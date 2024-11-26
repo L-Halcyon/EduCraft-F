@@ -16,25 +16,12 @@ class Conexion {
             
             // Usar la base de datos
             $this->conexion->exec("USE $DBnombre");
-            echo "Usando la base de datos: $DBnombre. 😊<br>";
 
-            // Mostrar las tablas existentes
-            $sqlShowTables = "SHOW TABLES";
-            $result = $this->conexion->query($sqlShowTables);
+           
             
-            // Verificar si hay tablas en la base de datos
-            if ($result->rowCount() > 0) {
-                echo "Tablas en la base de datos $DBnombre:<br>";
-                while ($row = $result->fetch(PDO::FETCH_NUM)) {
-                    echo $row[0] . "<br>";
-                }
-            } else {
-                echo "No hay tablas en la base de datos $DBnombre.<br>";
-            }
 
         } catch (PDOException $exp) {
 
-            echo "Fallo la conexión o la ejecución de SQL :(<br>";
             die($exp->getMessage());
         }
     }

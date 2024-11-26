@@ -5,8 +5,8 @@ header('Content-Type: application/json'); // Indicar que se devolverá JSON
 
 $response = ['success' => false, 'message' => '']; // Inicializar respuesta
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener los datos del formulario
         $rol = $_POST['user-role'] ?? '';
         $nombreCompleto = $_POST['full-name'] ?? '';
@@ -47,17 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->execute();
 
+        // Si no hubo excepciones, la respuesta será exitosa
         $response['success'] = true;
         $response['message'] = 'Usuario registrado correctamente.';
-    } catch (PDOException $e) {
-        // Capturar errores del procedimiento almacenado
-        $response['message'] = $e->getMessage();
-    } catch (Exception $e) {
-        $response['message'] = $e->getMessage();
+    } else {
+        $response['message'] = 'Acceso no permitido.';
     }
-} else {
-    $response['message'] = 'Acceso no permitido.';
+} catch (PDOException $e) {
+    // Capturar errores de la base de datos
+    $response['message'] = 'Error en la base de datos: ' . $e->getMessage();
+} catch (Exception $e) {
+    // Capturar errores generales
+    $response['message'] = 'Error: ' . $e->getMessage();
 }
 
-echo json_encode($response);
+echo json_encode($response); // Devolver respuesta JSON
 exit();
+?>
