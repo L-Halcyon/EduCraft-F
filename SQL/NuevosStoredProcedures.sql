@@ -93,6 +93,7 @@ CREATE PROCEDURE InsertarUsuario(
 )
 BEGIN
     -- Validación: Campos vacíos
+    /*
     IF p_Rol IS NULL OR p_Rol = '' OR
        p_NombreCompleto IS NULL OR p_NombreCompleto = '' OR
        p_Genero IS NULL OR p_Genero = '' OR
@@ -131,7 +132,7 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'La contraseña debe tener al menos 8 caracteres, una mayúscula, un carácter especial y un número.';
     END IF;
-
+*/
     -- Inserción de datos si todas las validaciones se cumplen
     INSERT INTO Usuario (
         Rol, ImagenAvatar, NombreCompleto, Genero, FechaNacimiento, Email, Contraseña, NumeroIntentosContraseña, FechaRegistroYActualizacionInfo, EstatusUsuario
@@ -140,9 +141,7 @@ BEGIN
         p_Rol, p_ImagenAvatar, p_NombreCompleto, p_Genero, p_FechaNacimiento, p_Email, p_Contraseña, 0, NOW(), 'Activo'
     );
 
-    -- Mensaje de éxito
-    SIGNAL SQLSTATE '01000'
-    SET MESSAGE_TEXT = 'Usuario registrado correctamente.';
+    
 END$$
 
 DELIMITER ;
