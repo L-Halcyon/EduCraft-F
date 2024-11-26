@@ -103,7 +103,7 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Todos los campos son obligatorios.';
     END IF;
-
+*/
     -- Validación: Este correo ya está registrado
     IF EXISTS (
         SELECT 1 FROM Usuario WHERE Email = p_Email
@@ -111,7 +111,7 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Este correo ya está registrado.';
     END IF;
-
+/*
     -- Validación: El nombre completo solo debe contener letras (incluido la ñ y espacios)
     IF p_NombreCompleto NOT REGEXP '^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]+$' THEN
         SIGNAL SQLSTATE '45000'
