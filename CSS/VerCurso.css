@@ -1,0 +1,84 @@
+/* General */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5deb3;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+}
+
+/* Contenido del curso */
+.course-header {
+    background-color: #f5deb3;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.course-header img {
+    width: 800px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Video */
+.video-container {
+    margin-top: 15px;
+}
+
+/* Nivel del curso */
+.level-title {
+    font-size: 1.5rem;
+    color: #8b5a2b;
+}
+
+/* Imagenes en la misma fila */
+.row img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+
+.btn-outline-secondary {
+    color: #8b5a2b;
+    border: 1px solid #8b5a2b;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #8b5a2b;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+}

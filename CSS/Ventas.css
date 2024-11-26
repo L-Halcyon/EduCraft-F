@@ -1,0 +1,91 @@
+/* General Styles */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5deb3;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+    text-decoration: none; /* Asegura que no haya subrayado inicialmente */
+
+}
+
+.nav-link:hover {
+    text-decoration: none; /* Asegura que no haya subrayado inicialmente */
+
+}
+
+/* Filters Section */
+.filters-section h2 {
+    font-size: 24px;
+    color: #8b5a2b;
+}
+
+.form-control {
+    background-color: #fff5e1;
+    color: #8b5a2b;
+    border: 1px solid #8b5a2b;
+}
+
+.form-control:focus {
+    border-color: #8b5a2b;
+}
+
+.btn-primary {
+    background-color: #8b5a2b;
+    border-color: #8b5a2b;
+}
+
+.btn-primary:hover {
+    background-color: #704214;
+    border-color: #704214;
+}
+
+/* Tables */
+.table {
+    background-color: white;
+}
+
+
+thead th {
+    background-color: #f0e6d6;
+    color: #8b5a2b;
+}
+
+.table th, .table td {
+    border: 1px solid #8b5a2b;
+}
+
+.table thead th {
+    border: 1px solid #8b5a2b;
+}
+
+
+tfoot {
+    background-color:#faf3e7;
+    font-weight: bold;
+    color: #8b5a2b;
+
+}
+
+footer {
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+    width: 100%;
+    margin-top: 20px;
+}

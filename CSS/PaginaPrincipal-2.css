@@ -1,0 +1,134 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5deb3;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+    text-decoration: none; /* Asegura que no haya subrayado inicialmente */
+
+}
+
+.nav-link:hover {
+    text-decoration: none; /* Asegura que no haya subrayado inicialmente */
+}
+
+.search-form label {
+    font-weight: bold;
+    color: #8b5a2b;
+}
+
+.form-control {
+    background-color: #fff5e1;
+    border: 1px solid #8b5a2b;
+    color: #8b5a2b;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btn-primary {
+    background-color: #AB7843;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #704214;
+}
+
+
+.course-categories h2 {
+    font-size: 24px;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.category-item {
+    background-color: #d2b48c;
+    padding: 20px;
+    border: 2px solid #8b5a2b;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.category-item:hover {
+    background-color: #c6a375;
+}
+
+.all-courses-btn {
+    display: block; /* Asegura que el enlace se trate como un bloque */
+    width: fit-content; /* Ajusta el ancho del bloque al contenido */
+    margin: 20px auto; /* Centra horizontalmente el botón */
+    font-family: 'Courier New', Courier, monospace;
+    color: #8b5a2b;
+    cursor: pointer;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+
+.all-courses-btn:hover {
+    text-decoration: underline;
+    color: #704214;
+}
+
+.featured-courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.course-card {
+    border: 2px solid #8b5a2b;
+    border-radius: 8px;
+    background-color: #f5deb3;
+    text-align: center;
+    flex: 1 1 calc(33.333% - 20px);
+    padding: 10px;
+}
+
+.course-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    border-bottom: 2px solid #8b5a2b;
+}
+
+.course-btn {
+    padding: 8px 16px;
+    border: 1px solid #8b5a2b;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.course-btn:hover {
+    background-color: #d2b48c;
+}
+
+footer {
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+    width: 100%;
+    margin-top: 20px;
+}

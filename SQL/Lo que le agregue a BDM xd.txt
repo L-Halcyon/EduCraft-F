@@ -1,0 +1,35 @@
+Holaaa, esto es lo que he podido avanzar
+- Ya corregi tanto las tablas como los procedures con lo del blob que pidio la profe pa las imagenes
+-Ya hay procedure para Crear, Editar y Eliminar Categoria
+
+-Ya hay procedure para crear un curso, Aqui esta un poco rebuscado, porque como son 3 tablas que se tienen que llenar a la vez cuando se crea un curso (Curso, Nivel y Multimedia) lo que hice fue que los datos que va a pedir el procedure son todos los del curso asi normales. Pero los datos del nivel y multimedia los pide en cadenas separadas por '|'(separa los columnas de la tabla) y ';' (separa cada fila de la tabla). Lo puse asi porque como niveles y multimedia pueden ser uno solo o muchos (o en el caso de multimedia se puede mandar ninguno tambien xd), tiene que haber forma de que puedas meterle todos los datos que quieras.
+
+Asi se tiene que mandar el parametro de nivel (suponiendo que se mandan 2 niveles, que son sus columnas 'Costo', 'Titulo','Descripcion' y 'Video'):
+ 100.00|Nivel 1|Descripción del nivel 1|video1.mp4;150.00|Nivel 2|Descripción del nivel 2|video2.mp4;
+
+Y el de multimedia se tiene mandar asi, se separan con ';' tambien: 
+archivo1.jpg;archivo2.mp4;archivo3.pdf;
+
+Y ya despues de eso el procedure base de crear curso llama internamente a tanto el procedure de insertar nivel como el de insertar multimedia, y ya se hace todo automatico.
+
+- Bueno y aparte de eso ya tambien se puede editar y eliminar un curso. Lo de editar hice que solo se pueda editar TituloCurso, CostoCompleto , DescripcionCurso e ImagenCurso. Asi para no involucrar el editar la tabla de niveles y cosas asi, pa no meternos en mas rollo xd, aparte que vi en la FE que no pide editar niveles, solo cursos.
+
+- Ya tambien hice el procedure de crear comentario al curso, y tambien con eso estoy haciendo internamente que se actualice el promedio de calificacion del curso cada que se haga un comentario, eso para que luego se puedan ordenar los cursos mejor calificados y asi.
+
+-Y ya tambien el procedure de eliminar el comentario por administrador
+
+
+-Esos son los procedures que he hecho.
+Luego en vistas he hecho 3
+-Uno para que traiga todas las categorias y llenar los combobox
+-Otro para traer los 5 cursos con mejor promedio de calificacion
+-Y otro para traer los 5 cursos creados mas recientemente. Esos dos son los que pide que se muestren en la ventana principal
+
+-Funciones hice 1 de las 2 que piden, que lo que hace es sacar el promedio de las calificaciones del curso. Esa funcion se usa internamente para el procedure de crear comentario y con eso actualizar la tabla de Curso.
+
+Y ya hice tambien el segundo trigger de los 2 que piden, el que hice fue que en vez de hacer el delete que se usa en el procedure de eliminar el curso, en vez de eliminarlo, solo actualiza el estatus a inactivo.
+
+
+Una disculpa por la bibliota xd   
+
+ 

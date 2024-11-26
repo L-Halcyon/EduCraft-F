@@ -1,0 +1,48 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #dec29b;
+    color: #8b5a2b;
+}
+
+.navbar {
+    background-color: #dec29b;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+}
+
+h1, h2 {
+    color: #8b5a2b;
+}
+
+.table th, .table td {
+    color: #8b5a2b;
+    border: 1px solid #8b5a2b;
+}
+
+.table thead th {
+    background-color: #f0e6d6;
+    border: 1px solid #8b5a2b;
+}
+
+.table tbody tr {
+    background-color: #fffdfa;
+}
+
+footer {
+    background-color: #dec29b;
+    color: #8b5a2b;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+}

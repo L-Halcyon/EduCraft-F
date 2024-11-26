@@ -1,0 +1,80 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #dec29b;
+    color: #8b5a2b;
+}
+
+.navbar {
+    background-color: #dec29b;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+}
+
+.btn-custom {
+    background-color: #8b5a2b;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #704214;
+}
+
+table {
+    background-color: white;
+}
+
+thead th {
+    background-color: #f0e6d6;
+    color: #8b5a2b;
+    border: 1px solid #8b5a2b !important;
+
+}
+
+.table td {
+    background-color: #fff;
+    border: 1px solid #8b5a2b !important;
+    color: #8b5a2b;
+}
+
+/* Modal */
+.modal-content{
+    background-color: #dec29b;
+    border-color: #704214;
+
+}
+
+.modal-header{
+    border-color: #704214;
+}
+
+.modal-footer{
+    border-color: #704214;
+}
+
+textarea.no-resize {
+    resize: none;
+}
+
+.form-control{
+    background-color: #fff5e1; /**/
+    border: 1px solid #8b5a2b;
+}
+
+footer {
+    background-color: #dec29b;
+    color: #8b5a2b;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+}

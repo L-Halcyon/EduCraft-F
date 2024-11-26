@@ -1,0 +1,152 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5deb3;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+    text-decoration: none; /* Asegura que no haya subrayado inicialmente */
+
+}
+
+.nav-link:hover {
+    text-decoration: none; /* Asegura que no haya subrayado inicialmente */
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Estilos para filtros */
+.filters {
+    background-color: #fff5e1;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #8b5a2b;
+}
+
+/* Estilos para la tabla */
+.table {
+    background-color: #fff5e1;
+    border: 1px solid #8b5a2b;
+    border-radius: 5px;
+}
+
+.table th {
+    background-color: #f0e6d6;
+    color: #8b5a2b;
+}
+
+.table td {
+    background-color: #fff;
+    color: #8b5a2b;
+}
+
+.progress-bar {
+    background-color: #8b5a2b;
+}
+
+.btn-primary{
+    background-color: #AB7843;
+    border: none;
+}
+
+.btn-primary:hover{
+    background-color: #8b5a2b;
+}
+
+.btn-info {
+    background-color: #AB7843;
+    border: none;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: #704214;
+}
+
+/* Estilos para la sección de calificación y comentarios */
+.rate-course {
+    background-color: #fff5e1;
+    border: 1px solid #8b5a2b;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.rating-section {
+    background-color: #fff5e1;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #8b5a2b;
+}
+
+.rating-section + .rating-section {
+    margin-top: 20px;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-outline-success {
+    border-color: #8b5a2b;
+    color: #8b5a2b;
+}
+
+/* Estilos para los botones de calificación */
+.btn-outline-success {
+    border-color: #8b5a2b;
+    color: #8b5a2b;
+    background-color: #fff; /* Fondo blanco por defecto */
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-outline-danger {
+    border-color: #8b5a2b;
+    color: #8b5a2b;
+    background-color: #fff; /* Fondo blanco por defecto */
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Estilos para los botones seleccionados */
+.btn-success.selected {
+    background-color: #28a745;
+    color: #fff;
+    border-color: #28a745;
+}
+
+.btn-danger.selected {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+
+footer {
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+    width: 100%;
+    margin-top: 20px;
+}

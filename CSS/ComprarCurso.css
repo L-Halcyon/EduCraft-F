@@ -1,0 +1,119 @@
+/* General */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    margin: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5deb3;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+}
+
+/* Main Content */
+.container {
+    margin-top: 50px;
+}
+
+.course-title {
+    font-family: 'Sans', sans-serif;
+    font-size: 24px;
+    color: #8b5a2b;
+}
+
+.course-description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #8b5a2b;
+}
+
+.form-control{
+    background-color: #fff5e1;
+    border: 1px solid #8b5a2b;
+
+}
+
+.btn-brown {
+    background-color: #AB7843;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-brown:hover {
+    background-color: #704214;
+}
+
+.btn-outline-brown {
+    color: #8b5a2b;
+    border: 1px solid #8b5a2b;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-brown:hover {
+    background-color: #8b5a2b;
+    color: #fff;
+}
+
+/* Levels Section */
+.level {
+    background-color: #fff5e1; /* Fondo blanco */
+    border-radius: 5px; /* Borde menos curveado */
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none !important; /* Asegura que ningún otro estilo sobreescriba */
+    border: 1px solid #ddd; /* Un borde suave para destacar */
+}
+
+.level p {
+    margin: 0;
+    font-size: 18px; /* Tamaño de letra un poco más grande */
+    color: #8b5a2b;
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 20px;
+    background-color: #fee4bc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff5e1;
+    border: none !important; /* Asegura que ningún otro estilo sobreescriba */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Más sombreado */
+}
+
+.comment p {
+    margin: 0;
+}
+
+/* Footer */
+footer {
+    background-color: #f5deb3;
+    color: #8b5a2b;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #8b5a2b;
+}

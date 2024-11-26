@@ -1,0 +1,98 @@
+/* CrearCurso.css */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5deb3;
+    color: #8b5a2b;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f5deb3;
+}
+
+a h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #8b5a2b;
+}
+
+.nav-link {
+    color: #8b5a2b;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+}
+
+h2 {
+    color: #8b5a2b;
+    margin-bottom: 20px;
+}
+
+
+
+.form-control{
+    background-color: #fff5e1;
+    border: 1px solid #8b5a2b;
+}
+
+.form-control,
+.btn {
+    border-radius: 5px;
+}
+
+.custom-file-label{
+    background-color: #fff5e1;
+    border: 1px solid #8b5a2b;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "Elegir archivo";
+}
+
+textarea.no-resize {
+    resize: none;
+}
+
+#btn-crear-niveles {
+    background-color: #8b5a2b;
+    color: #fff;
+    border: none;
+}
+
+#btn-crear-niveles:hover {
+    background-color: #704214;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+#niveles-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #8b5a2b;
+    border-radius: 10px;
+    background-color: #f5deb3;
+}
+
+.btn-primary{
+    background-color: #AB7843;
+    border: none;
+}
+
+.btn-primary:hover{
+    background-color: #8b5a2b;
+}
+
+footer {
+    background-color: #f5deb3;
+    padding: 10px 0;
+    border-top: 2px solid #d2b48c;
+}
+
+footer p {
+    margin: 0;
+    color: #8b5a2b;
+}
