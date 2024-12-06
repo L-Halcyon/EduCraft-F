@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'Conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,6 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Si el inicio de sesión fue exitoso
             if ($estatusSesion === 'Inicio de sesión exitoso') {
+                // Guardar el correo en la sesión <-- aqui es donde se almacena el usuario
+                $_SESSION['email'] = $email;
+
                 // Llamada al procedimiento ObtenerRolUsuario para determinar el rol
                 $sqlRol = 'CALL ObtenerRolUsuario(:email, @rolUsuario)';
                 $stmtRol = $db->prepare($sqlRol);
