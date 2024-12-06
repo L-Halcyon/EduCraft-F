@@ -82,6 +82,21 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE ObtenerNombreCompleto( -- xd
+    IN p_Email VARCHAR(50),
+    OUT p_NombreCompleto VARCHAR(100)
+)
+BEGIN
+    SELECT NombreCompleto
+    INTO p_NombreCompleto
+    FROM Usuario
+    WHERE Email = p_Email;
+END //
+
+DELIMITER ;
+
 
 
 
