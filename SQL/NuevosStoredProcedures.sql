@@ -98,6 +98,23 @@ END //
 DELIMITER ;
 
 
+DELIMITER //
+CREATE PROCEDURE ObtenerIDUsuarioPorEmail(-- Para sacar el Id Del usuario que inició sesión xd
+    IN p_Email VARCHAR(255),
+    OUT p_Id_Usuario INT,
+    OUT p_NombreCompleto VARCHAR(255)
+)
+BEGIN
+    SELECT Id_Usuario, NombreCompleto
+    INTO p_Id_Usuario, p_NombreCompleto
+    FROM Usuario
+    WHERE Email = p_Email;
+END//
+
+DELIMITER; 
+
+
+
 
 
 -- USUARIO
@@ -174,6 +191,25 @@ DELIMITER ;
 
 
 /*----------------------------CATEGORIAS------------------------------------*/
+
+
+DELIMITER $$
+
+CREATE PROCEDURE ObtenerCategorias() /*Para traer todas las categorias (lo queria hacer desde la vista pero vi que a fuerzas todo tiene que ser en procedures xd)*/
+BEGIN
+ SELECT 
+        Id_Categoria,
+        Nombre,
+        Descripcion,
+        FechaCreacion,
+        UsuarioCreador
+    FROM VistaCategorias
+    WHERE EstatusCategoria = 'Activo';  -- Filtrar solo las categorías activas
+END $$
+
+DELIMITER ;
+
+
 
 DELIMITER //
 
