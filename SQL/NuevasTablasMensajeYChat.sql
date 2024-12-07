@@ -1,0 +1,24 @@
+
+
+
+CREATE TABLE Chat (
+    ID_Chat INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Estudiante INT NOT NULL,
+ ID_Profesor INT NOT NULL,
+FechaInicio DATETIME DEFAULT CURRENT_TIMESTAMP,
+ CONSTRAINT FK_Chat_Estudiante FOREIGN KEY (ID_Estudiante) REFERENCES Usuario(Id_Usuario),
+ CONSTRAINT FK_Chat_VProfesor FOREIGN KEY (ID_Profesor) REFERENCES Usuario(Id_Usuario)
+  
+);
+
+
+
+CREATE TABLE Mensaje (
+    ID_Mensaje INT AUTO_INCREMENT PRIMARY KEY,
+    HoraFechaMensaje DATETIME,
+    TextoMensaje VARCHAR(500),
+    ID_USUARIO INT,
+    CHAT_ID INT NOT NULL,
+    CONSTRAINT FK_Mensaje_Usuario FOREIGN KEY (ID_USUARIO) REFERENCES Usuario(Id_Usuario),
+    CONSTRAINT FK_Mensaje_Chat FOREIGN KEY (CHAT_ID) REFERENCES Chat(ID_Chat)
+);

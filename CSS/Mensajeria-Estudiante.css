@@ -149,3 +149,11 @@ footer {
     width: 100%;
     margin-top: 20px;
 }
+
+
+
+.message-timestamp {
+    margin-left: 70px;  
+    font-size: 0.9em;   
+    color: #888;        
+}
