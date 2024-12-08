@@ -7,7 +7,7 @@ DELIMITER //
 CREATE PROCEDURE IniciarSesion(
     IN p_Email VARCHAR(50),
     IN p_Contraseña VARCHAR(20),
-    OUT p_EstatusSesion VARCHAR(50) -- Parámetro de salida para indicar el estado del inicio de sesión
+    OUT p_EstatusSesion VARCHAR(255) 
 )
 BEGIN
     DECLARE v_ContraseñaActual VARCHAR(20);
@@ -21,8 +21,7 @@ BEGIN
     WHERE Email = p_Email;
 
     IF v_UsuarioEncontrado = 0 THEN
-        -- Si no existe el usuario
-        SET p_EstatusSesion = 'Usuario no encontrado';
+        SET p_EstatusSesion = 'El correo no está registrado.';
     ELSE
         -- Si el usuario existe, obtenemos sus datos
         SELECT Contraseña, NumeroIntentosContraseña, EstatusUsuario
@@ -32,23 +31,32 @@ BEGIN
 
         -- Verifica si el usuario está inactivo
         IF v_EstatusUsuario = 'Inactivo' THEN
-            SET p_EstatusSesion = 'Usuario inactivo por intentos fallidos. Contacte a un administrador.';
+            SET p_EstatusSesion = 'Cuenta inactiva. Espere activación por un administrador.';
         ELSE
             -- Compara la contraseña
             IF p_Contraseña = v_ContraseñaActual THEN
-                -- Si la contraseña es correcta, restablece el número de intentos a 0
+                -- Contraseña correcta
                 UPDATE Usuario
                 SET NumeroIntentosContraseña = 0
                 WHERE Email = p_Email;
-
-                SET p_EstatusSesion = 'Inicio de sesión exitoso'; -- Contraseña correcta
+                SET p_EstatusSesion = 'Inicio de sesión exitoso';
             ELSE
-                -- Si la contraseña es incorrecta, incrementa el número de intentos
+                -- Contraseña incorrecta, incrementa intentos
+                SET v_NumeroIntentos = v_NumeroIntentos + 1;
                 UPDATE Usuario
-                SET NumeroIntentosContraseña = NumeroIntentosContraseña + 1
+                SET NumeroIntentosContraseña = v_NumeroIntentos
                 WHERE Email = p_Email;
 
-                SET p_EstatusSesion = 'Contraseña incorrecta'; -- Contraseña incorrecta
+                IF v_NumeroIntentos >= 3 THEN
+                    -- Bloquea usuario después de 3 intentos
+                    UPDATE Usuario
+                    SET EstatusUsuario = 'Inactivo'
+                    WHERE Email = p_Email;
+                    SET p_EstatusSesion = 'Cuenta inactiva por intentos fallidos.';
+                ELSE
+                    -- Mensaje indicando intentos restantes
+                    SET p_EstatusSesion = CONCAT('Contraseña incorrecta. Intento ', v_NumeroIntentos, '/3.');
+                END IF;
             END IF;
         END IF;
     END IF;
@@ -92,47 +100,6 @@ CREATE PROCEDURE InsertarUsuario(
     IN p_Contraseña VARCHAR(20)
 )
 BEGIN
-    -- Validación: Campos vacíos
-    /*
-    IF p_Rol IS NULL OR p_Rol = '' OR
-       p_NombreCompleto IS NULL OR p_NombreCompleto = '' OR
-       p_Genero IS NULL OR p_Genero = '' OR
-       p_FechaNacimiento IS NULL OR
-       p_Email IS NULL OR p_Email = '' OR
-       p_Contraseña IS NULL OR p_Contraseña = '' THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Todos los campos son obligatorios.';
-    END IF;
-*/
-    -- Validación: Este correo ya está registrado
-    IF EXISTS (
-        SELECT 1 FROM Usuario WHERE Email = p_Email
-    ) THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Este correo ya está registrado.';
-    END IF;
-/*
-    -- Validación: El nombre completo solo debe contener letras (incluido la ñ y espacios)
-    IF p_NombreCompleto NOT REGEXP '^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]+$' THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El nombre completo solo debe contener letras.';
-    END IF;
-
-    -- Validación: El correo no es válido
-    IF p_Email NOT REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$' THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El correo no es válido.';
-    END IF;
-
-    -- Validación: La contraseña debe contener al menos 8 caracteres, una mayúscula, un carácter especial y un número
-    IF LENGTH(p_Contraseña) < 8 OR
-       p_Contraseña NOT REGEXP '.*[A-Z].*' OR
-       p_Contraseña NOT REGEXP '.*[0-9].*' OR
-       p_Contraseña NOT REGEXP '.*[!@#$%^&*(),.?":{}|<>].*' THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'La contraseña debe tener al menos 8 caracteres, una mayúscula, un carácter especial y un número.';
-    END IF;
-*/
     -- Inserción de datos si todas las validaciones se cumplen
     INSERT INTO Usuario (
         Rol, ImagenAvatar, NombreCompleto, Genero, FechaNacimiento, Email, Contraseña, NumeroIntentosContraseña, FechaRegistroYActualizacionInfo, EstatusUsuario

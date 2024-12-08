@@ -43,9 +43,9 @@
                     <label for="gender">Género:</label>
                     <select class="form-control custom-input" id="gender" name="gender" >
                         <option value="">Seleccionar género</option>
-                        <option value="male">Masculino</option>
-                        <option value="female">Femenino</option>
-                        <option value="other">Otro</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
                     </select>
                 </div>
             </div>
@@ -69,9 +69,9 @@
                     <label for="user-role">Rol de Usuario:</label>
                     <select class="form-control custom-input" id="user-role" name="user-role" >
                         <option value="">Seleccionar Rol</option>
-                        <option value="student">Estudiante</option>
-                        <option value="teacher">Profesor</option>
-                        <option value="administrator">administrator</option>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="profesor">Profesor</option>
+                        <option value="administrador">Administrador</option>
 
                     </select>
                 </div>

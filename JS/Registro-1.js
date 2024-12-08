@@ -29,7 +29,7 @@ document.querySelector('.register-form').addEventListener('submit', function (e)
     }
 
     // Validar que el Nombre Completo solo contenga letras
-    const nameRegex = /^[a-zA-Z\s]+$/;
+    const nameRegex = /^[a-zñA-ZÑáéíóúÁÉÍÓÚüÜ\s]+$/;
     if (valid && !nameRegex.test(fullName)) {
         messages.className = 'alert alert-danger';
         messages.innerText = 'El Nombre Completo solo debe contener letras.';
