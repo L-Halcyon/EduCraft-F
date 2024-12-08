@@ -1,3 +1,22 @@
+
+/*PRIMER TRIGGER (PARA BORRAR CURSO)*/
+
+
+DELIMITER //
+
+CREATE TRIGGER BajaLogicaPorIntentos
+BEFORE UPDATE ON Usuario
+FOR EACH ROW
+BEGIN
+    IF NEW.NumeroIntentosContraseña >= 3 THEN
+        SET NEW.EstatusUsuario = 'Inactivo';
+        SET NEW.FechaRegistroYActualizacionInfo = NOW();
+    END IF;
+END //
+
+DELIMITER ;
+
+
 /*SEGUNDO TRIGGER (PARA BORRAR CURSO)*/
 
 DELIMITER //

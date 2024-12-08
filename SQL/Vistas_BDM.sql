@@ -11,7 +11,8 @@ SELECT
     c.NombreCategoria AS Nombre,
     c.DescripcionCategoria AS Descripcion,
     c.FechaHoraCreacionCategoria AS FechaCreacion,
-    u.NombreCompleto AS UsuarioCreador
+    u.NombreCompleto AS UsuarioCreador,
+      c.EstatusCategoria
 FROM 
     Categoria c
 LEFT JOIN 
