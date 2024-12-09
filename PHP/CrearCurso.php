@@ -7,12 +7,14 @@ try {
     // Validar y procesar datos del curso
     $tituloCurso = trim($_POST['tituloCurso']);
     $descripcionCurso = trim($_POST['descripcionCurso']);
-    $costoCompleto = floatval($_POST['costoCompleto']);
+    $costoCurso = floatval($_POST['costoCurso']);
     $cantidadNiveles = intval($_POST['cantidadNiveles']);
     $idUsuario = intval($_POST['idUsuario']);
-    $idCategoria = intval($_POST['idCategoria']);
+    $idCategoria = isset($_POST['idCategoria']) ? intval($_POST['idCategoria']) : 0;
+    $nivelesData = isset($_POST['nivelesData']) ? json_decode($_POST['nivelesData'], true) : [];
 
-    if (empty($tituloCurso) || empty($descripcionCurso) || $costoCompleto < 0 || $cantidadNiveles <= 0 || $idUsuario <= 0 || $idCategoria <= 0) {
+
+    if (empty($tituloCurso) || empty($descripcionCurso) || $costoCurso < 0 || $cantidadNiveles <= 0 || $idUsuario <= 0 || $idCategoria <= 0) {
         throw new Exception('Datos del curso inválidos.');
     }
 
@@ -22,27 +24,54 @@ try {
         $imagenCurso = file_get_contents($_FILES['imagenCurso']['tmp_name']);
     }
 
-    // Procesar niveles
+    // Procesar niveles (ahora se reciben como JSON)
     $nivelesData = [];
-    for ($i = 1; $i <= $cantidadNiveles; $i++) {
-        $tituloNivel = trim($_POST["nivel{$i}_titulo"]);
-        $descripcionNivel = trim($_POST["nivel{$i}_descripcion"]);
-        $costoNivel = floatval($_POST["nivel{$i}_costo"]);
-        $videoNivel = $_FILES["nivel{$i}_video"]['name'] ?? '';
-
-        if (empty($tituloNivel) || empty($descripcionNivel) || $costoNivel < 0) {
-            throw new Exception("Datos del nivel {$i} son inválidos.");
+    if (isset($_POST['nivelesData'])) {
+        $nivelesData = json_decode($_POST['nivelesData'], true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception('Error al procesar los datos de los niveles.');
         }
 
-        // Guardar video en la carpeta local (opcional, según necesidades)
-        $rutaVideo = "../uploads/niveles/videos/{$videoNivel}";
-        if (!move_uploaded_file($_FILES["nivel{$i}_video"]['tmp_name'], $rutaVideo)) {
-            throw new Exception("Error al subir el video del nivel {$i}.");
-        }
+        foreach ($nivelesData as $index => $nivel) {
+            $tituloNivel = $nivel['titulo'];
+            $descripcionNivel = $nivel['descripcion'];
+            $costoNivel = floatval($nivel['costo']);
+            //$videoNivel = $nivel['video'] ?? null;
 
-        // Formatear nivel para el procedimiento almacenado
-        $nivelesData[] = "{$costoNivel}|{$tituloNivel}|{$descripcionNivel}|{$rutaVideo}";
+            if (empty($tituloNivel) || empty($descripcionNivel) || $costoNivel < 0) {
+                throw new Exception("Datos del nivel " . ($index + 1) . " son invalidos.");
+            }
+
+            // Guardar video en la carpeta local (opcional, según necesidades)
+            /*$rutaVideo = "../uploads/niveles/videos/{$videoNivel}";
+            if (!move_uploaded_file($_FILES["nivel{$index}_video"]['tmp_name'], $rutaVideo)) {
+                throw new Exception("Error al subir el video del nivel " . ($index + 1) . ".");
+            }*/
+
+            // Procesar el archivo de video
+            $videoKey = "nivel{$index}_video"; // Clave dinámica para el archivo
+            $rutaVideo = null;
+
+            if (isset($_FILES[$videoKey]) && $_FILES[$videoKey]['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = "../uploads/niveles/videos/";
+                $nombreArchivo = basename($_FILES[$videoKey]['name']);
+                $rutaVideo = $uploadDir . $nombreArchivo;
+
+                // Mover el archivo subido a su destino
+                if (!move_uploaded_file($_FILES[$videoKey]['tmp_name'], $rutaVideo)) {
+                    echo json_encode([
+                        "success" => false,
+                        "message" => "Error al subir el video del nivel " . ($index + 1) . "."
+                    ]);
+                    exit;
+                }
+            }
+
+            // Formatear nivel para el procedimiento almacenado
+            $nivelesData[$index] = "{$costoNivel}|{$tituloNivel}|{$descripcionNivel}|{$rutaVideo}";
+        }
     }
+
     $niveles = implode(';', $nivelesData);
 
     // Procesar multimedia
@@ -62,10 +91,10 @@ try {
     $db = $conexion->obtenerConexion();
 
     // Llamar al procedimiento almacenado
-    $stmt = $db->prepare("CALL InsertarCurso(:titulo, :cantidadNiveles, :costoCompleto, :descripcion, :imagen, :idUsuario, :idCategoria, :niveles, :multimedia)");
+    $stmt = $db->prepare("CALL InsertarCurso(:titulo, :cantidadNiveles, :costoCurso, :descripcion, :imagen, :idUsuario, :idCategoria, :niveles, :multimedia)");
     $stmt->bindParam(':titulo', $tituloCurso);
     $stmt->bindParam(':cantidadNiveles', $cantidadNiveles);
-    $stmt->bindParam(':costoCompleto', $costoCompleto);
+    $stmt->bindParam(':costoCurso', $costoCurso);
     $stmt->bindParam(':descripcion', $descripcionCurso);
     $stmt->bindParam(':imagen', $imagenCurso, PDO::PARAM_LOB);
     $stmt->bindParam(':idUsuario', $idUsuario);

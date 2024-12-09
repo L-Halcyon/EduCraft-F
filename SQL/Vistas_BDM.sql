@@ -2,8 +2,13 @@
 
 USE DB_BDM_CURSOS;
 
-DELIMITER //
-/*MOSTRAR CATEGORIAS (EN LOS COMBOBOX A LA HORA DE CREAR UN CURSO O BUSCARLO)*/
+DROP VIEW IF EXISTS VistaCategorias;
+DROP VIEW IF EXISTS Top5CursosMejorCalificados;
+DROP VIEW IF EXISTS Top5CursosMasRecientes;
+
+
+-- Vista: Mostrar categorías
+DROP VIEW IF EXISTS VistaCategorias;
 
 CREATE VIEW VistaCategorias AS
 SELECT 
@@ -12,21 +17,17 @@ SELECT
     c.DescripcionCategoria AS Descripcion,
     c.FechaHoraCreacionCategoria AS FechaCreacion,
     u.NombreCompleto AS UsuarioCreador,
-      c.EstatusCategoria
+    c.EstatusCategoria
 FROM 
     Categoria c
 LEFT JOIN 
     Usuario u
 ON 
-    c.Id_Usuario = u.Id_Usuario
-WHERE 
-    c.Id_Categoria IS NOT NULL;
+    c.Id_Usuario = u.Id_Usuario;
 
+-- Vista: Top 5 Cursos Mejor Calificados
+DROP VIEW IF EXISTS Top5CursosMejorCalificados;
 
-DELIMITER ;
-
-DELIMITER //
-/*Mostrar en la pantalla principal los 5 cursos mejor calificados*/
 CREATE VIEW Top5CursosMejorCalificados AS
 SELECT 
     Id_Curso,
@@ -38,18 +39,13 @@ SELECT
 FROM 
     Curso
 WHERE 
-    EstatusCurso = 'Activo' 
+    EstatusCurso = 'Activo'
 ORDER BY 
     PromedioCalificacion DESC
 LIMIT 5;
 
-
-DELIMITER ;
-
-
-
-/*Mostrar en la pantalla principal los 5 cursos mas recientes*/
-DELIMITER //
+-- Vista: Top 5 Cursos Más Recientes
+DROP VIEW IF EXISTS Top5CursosMasRecientes;
 
 CREATE VIEW Top5CursosMasRecientes AS
 SELECT 
@@ -63,9 +59,7 @@ SELECT
 FROM 
     Curso
 WHERE 
-    EstatusCurso = 'Activo' 
+    EstatusCurso = 'Activo'
 ORDER BY 
     FechaCreacionCurso DESC
 LIMIT 5;
-
-DELIMITER ;

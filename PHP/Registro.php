@@ -50,7 +50,7 @@ try {
     if (strpos($e->getMessage(), 'Este correo ya está registrado.') !== false) {
         $response['message'] = 'Este correo ya está registrado.';
     } else {
-        $response['message'] = 'Error en la base de datos.';
+        $response['message'] = 'Error de base de datos: ' . $e->getMessage();
     }
 } catch (Exception $e) {
     $response['message'] = 'Error: ' . $e->getMessage();
