@@ -73,18 +73,15 @@
             </form>
 
     <main class="container">
-        <section class="course-categories text-center">
-            <h2>Categorías de cursos</h2>
-            <p>Explore nuestros cursos mejor calificados en varias categorías.</p>
-            <div class="categories-container">
-                <button class="category-item btn">IT & Software<br><span>Explora cursos de programación, ciberseguridad y más.</span></button>
-                <button class="category-item btn">Marketing<br><span>Aprenda marketing digital, redes sociales y más.</span></button>
-                <button class="category-item btn">Negocio<br><span>Mejora tus habilidades empresariales con nuestros cursos.</span></button>
-                <button class="category-item btn">Diseño<br><span>Explore cursos de diseño gráfico, UX/UI y más.</span></button>
-                <button class="category-item btn">Desarrollo personal<br><span>Potencia tu crecimiento personal y profesional.</span></button>
-                <button class="category-item btn">Salud y Fitness<br><span>Mejora tu salud y bienestar con nuestros cursos.</span></button>
-            </div>
-        </section>
+    <section class="course-categories text-center">
+        <div class="category-select mt-4">
+            <label for="categorySelect">Seleccione una categoría:</label>
+            <select id="categorySelect" class="form-control">
+                <option value="">Ninguna</option>
+            </select>
+        </div>
+    </section>
+
         <a href="#" class="all-courses-btn">Ver todos los cursos disponibles</a>
 
         <section class="featured-courses">
@@ -122,5 +119,7 @@
 
     <!-- Archivo JS personalizado -->
     <script src="../JS/UsuarioLogueado-1.js"></script>
+    <script src="../JS/PaginaPrincipal-2.js"></script>
+
 </body>
 </html>
