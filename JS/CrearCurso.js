@@ -2,6 +2,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCrearNiveles = document.getElementById('btn-crear-niveles');
     const nivelesContainer = document.getElementById('niveles-container');
     const formCrearCurso = document.getElementById('form-crear-curso');
+    const categoriaSelect = document.getElementById("categoriaCurso");
+
+    // Función para cargar las categorías
+    function cargarCategorias() {
+        fetch("http://localhost:3000/PHP/ObtenerCategoriasCursos.php")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener las categorías");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.success) {
+                    data.categorias.forEach((categoria) => {
+                        const option = document.createElement("option");
+                        option.value = categoria.id;
+                        option.textContent = categoria.nombre;
+                        categoriaSelect.appendChild(option);
+                    });
+                } else {
+                    console.error("Error en la respuesta:", data.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Error al cargar categorías:", error);
+            });
+    }
+
+    // Llamar a la función para cargar categorías
+    cargarCategorias();
 
     // Crear niveles dinámicos
     btnCrearNiveles.addEventListener('click', () => {
@@ -25,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="form-group col-md-6">
                         <label for="videoNivel${i}">Video del nivel</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="videoNivel${i}" accept="video/*" required>
+                            <input type="file" class="custom-file-input" id="videoNivel${i}" name="nivel${i}_video" accept="video/*" required>
                             <label class="custom-file-label" for="videoNivel${i}">Seleccionar archivo</label>
                         </div>
                     </div>
@@ -129,58 +159,89 @@ function prepararDatosFormulario() {
     const descripcionCurso = document.getElementById('descripcionCurso').value.trim();
     const costoCurso = document.getElementById('costoCurso').value.trim();
     const cantidadNiveles = parseInt(document.getElementById('cantidadNiveles').value);
+    
+    // Obtener idUsuario desde sessionStorage
+    const idUsuario = sessionStorage.getItem('idUsuario');
+
+    if (!idUsuario) {
+        console.error('El ID del usuario no está disponible');
+        return;
+    }
 
     formData.append('tituloCurso', tituloCurso);
-    formData.append('imagenCurso', imagenCurso);
-    formData.append('descripcionCurso', descripcionCurso);
-    formData.append('costoCurso', costoCurso);
     formData.append('cantidadNiveles', cantidadNiveles);
+    formData.append('costoCurso', costoCurso);
+    formData.append('descripcionCurso', descripcionCurso);
+    formData.append('imagenCurso', imagenCurso);
+    formData.append('idUsuario', idUsuario);
+    
+    // Datos de categorías (si es necesario, si no lo has hecho)
+    const categoriaSelect = document.getElementById('categoriaCurso');
+    const idCategoria = categoriaSelect ? categoriaSelect.value : '';
+    formData.append('idCategoria', idCategoria);
 
-    // Datos de los niveles dinámicos
+    /*document.getElementById('categoriasData').value = JSON.stringify(categoriasData);
+
+    const idCategoria = document.getElementById('categoriasData').value.trim();
+    formData.append('idCategoria', idCategoria);*/
+    
+
+    // Recopilar datos de los niveles
     const nivelesContainer = document.getElementById('niveles-container');
     const niveles = nivelesContainer.querySelectorAll('.nivel');
+    const nivelesData = [];
 
     niveles.forEach((nivel, index) => {
         const nivelIndex = index + 1; // Para identificar los niveles (1, 2, ...)
 
-        // Campos obligatorios
-        const tituloNivel = nivel.querySelector(`#tituloNivel${nivelIndex}`).value.trim();
-        const descripcionNivel = nivel.querySelector(`#descripcionNivel${nivelIndex}`).value.trim();
-        const videoNivel = nivel.querySelector(`#videoNivel${nivelIndex}`).files[0];
-        const costoNivel = nivel.querySelector(`#costoNivel${nivelIndex}`).value.trim();
+        // Verificar que los elementos existen antes de acceder a ellos
+        const tituloNivelElement = nivel.querySelector(`#tituloNivel${nivelIndex}`);
+        const descripcionNivelElement = nivel.querySelector(`#descripcionNivel${nivelIndex}`);
+        const videoNivelElement = nivel.querySelector(`#videoNivel${nivelIndex}`);
+        const costoNivelElement = nivel.querySelector(`#costoNivel${nivelIndex}`);
 
-        formData.append(`nivel${nivelIndex}_titulo`, tituloNivel);
-        formData.append(`nivel${nivelIndex}_descripcion`, descripcionNivel);
-        formData.append(`nivel${nivelIndex}_video`, videoNivel);
-        formData.append(`nivel${nivelIndex}_costo`, costoNivel);
+        // Verificar que los elementos no son nulos
+        if (!tituloNivelElement || !descripcionNivelElement || !costoNivelElement) {
+            console.error(`Faltan campos obligatorios en el nivel ${nivelIndex}`);
+            return;
+        }
+
+        const tituloNivel = tituloNivelElement.value.trim();
+        const descripcionNivel = descripcionNivelElement.value.trim();
+        const videoNivel = videoNivelElement ? videoNivelElement.files[0] : null;  // Verificar si el video existe
+        const costoNivel = costoNivelElement.value.trim();
+
+        // Crear objeto para cada nivel
+        const nivelData = {
+            titulo: tituloNivel,
+            descripcion: descripcionNivel,
+            video: videoNivel,
+            costo: costoNivel
+        };
 
         // Campos opcionales
-        const archivosAdjuntos = nivel.querySelector(`#archivosAdjuntos${nivelIndex}`).files;
-        const linkExterno = nivel.querySelector(`#linkExterno${nivelIndex}`).value.trim();
-        const imagenesNivel = nivel.querySelector(`#imagenesNivel${nivelIndex}`).files;
-        const textoContenido = nivel.querySelector(`#textoContenido${nivelIndex}`).value.trim();
+        const archivosAdjuntos = nivel.querySelector(`#archivosAdjuntos${nivelIndex}`)?.files ?? [];
+        const linkExterno = nivel.querySelector(`#linkExterno${nivelIndex}`)?.value.trim() ?? '';
+        const imagenesNivel = nivel.querySelector(`#imagenesNivel${nivelIndex}`)?.files ?? [];
+        const textoContenido = nivel.querySelector(`#textoContenido${nivelIndex}`)?.value.trim() ?? '';
 
-        // Adjuntar archivos opcionales
-        Array.from(archivosAdjuntos).forEach((archivo, i) => {
-            formData.append(`nivel${nivelIndex}_archivoAdjunto${i + 1}`, archivo);
-        });
+        nivelData.archivosAdjuntos = Array.from(archivosAdjuntos).map(archivo => archivo.name);
+        nivelData.imagenesNivel = Array.from(imagenesNivel).map(imagen => imagen.name);
+        nivelData.linkExterno = linkExterno;
+        nivelData.textoContenido = textoContenido;
 
-        Array.from(imagenesNivel).forEach((imagen, i) => {
-            formData.append(`nivel${nivelIndex}_imagen${i + 1}`, imagen);
-        });
-
-        // Adjuntar otros campos opcionales
-        if (linkExterno) {
-            formData.append(`nivel${nivelIndex}_linkExterno`, linkExterno);
-        }
-
-        if (textoContenido) {
-            formData.append(`nivel${nivelIndex}_textoContenido`, textoContenido);
-        }
+        nivelesData.push(nivelData);
     });
+
+    // Asignar la información de niveles a un campo oculto
+    document.getElementById('nivelesData').value = JSON.stringify(nivelesData);
+    formData.append('nivelesData', JSON.stringify(nivelesData));
+
 
     return formData;
 }
+
+
 
 
 
@@ -198,19 +259,31 @@ function actualizarEtiquetasArchivo() {
 // Enviar datos al servidor
 async function enviarDatosCurso(formData) {
     try {
+        /*// Obtener los datos de los campos ocultos
+        const nivelesData = document.getElementById('nivelesData').value;
+        const categoriasData = document.getElementById('categoriasData').value;
+
+        // Asegurarse de que se agreguen los datos de los campos ocultos al FormData
+        formData.append('nivelesData', nivelesData);
+        formData.append('categoriasData', categoriasData);*/
+
         const response = await fetch('../PHP/CrearCurso.php', {
             method: 'POST',
             body: formData,
         });
+
         const result = await response.json();
+
+        // Si el servidor responde con éxito, muestra un mensaje y redirige
         if (result.success) {
             alert('Curso creado exitosamente.');
-            window.location.href = './HTML/MisCursos.php';
+            window.location.href = 'MisCursos.php'; // Redirigir a la página de cursos
         } else {
             alert(`Error: ${result.message}`);
         }
     } catch (error) {
         console.error('Error al enviar los datos:', error);
-        alert('Ocurrió un error. Intente nuevamente.');
+        alert('Ocurrió un error al intentar crear el curso. Intente nuevamente más tarde.');
     }
 }
+

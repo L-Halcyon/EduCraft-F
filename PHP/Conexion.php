@@ -5,9 +5,9 @@ class Conexion {
     public function __construct() {
         $Host = 'localhost';
         $Usuario = 'root';
-        $Contrasena = '';
-        $Puerto = 3307;
-        $DBnombre = 'DB_BDM_CURSOS'; // Nombre de la base de datos
+        $Contrasena = '51423dsca';
+        $Puerto = 3306;
+        $DBnombre = 'db_bdm_cursos'; // Nombre de la base de datos
         
         try {
             // Establecer la conexión con PDO al servidor MySQL

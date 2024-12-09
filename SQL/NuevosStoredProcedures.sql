@@ -1,6 +1,28 @@
 USE DB_BDM_CURSOS;
 
 
+DROP PROCEDURE IF EXISTS ActualizarComentarioBaja;
+DROP PROCEDURE IF EXISTS InsertarComentario;
+
+DROP PROCEDURE IF EXISTS BajaLogicaCurso;
+DROP PROCEDURE IF EXISTS EditarCurso;
+DROP PROCEDURE IF EXISTS InsertarMultimedia;
+DROP PROCEDURE IF EXISTS InsertarNiveles;
+DROP PROCEDURE IF EXISTS InsertarCurso;
+
+DROP PROCEDURE IF EXISTS BajaCategoria;
+DROP PROCEDURE IF EXISTS ModificarCategoria;
+DROP PROCEDURE IF EXISTS CrearCategoria;
+DROP PROCEDURE IF EXISTS ObtenerCategorias;
+
+DROP PROCEDURE IF EXISTS BajaLogicaUsuario;
+DROP PROCEDURE IF EXISTS ModificarUsuario;
+DROP PROCEDURE IF EXISTS InsertarUsuario;
+DROP PROCEDURE IF EXISTS ObtenerIDUsuarioPorEmail;
+DROP PROCEDURE IF EXISTS ObtenerNombreCompleto;
+DROP PROCEDURE IF EXISTS ObtenerRolUsuario;
+DROP PROCEDURE IF EXISTS IniciarSesion;
+
 -- LOGIN
 DELIMITER //
 
@@ -312,7 +334,6 @@ DELIMITER ;
 
 DELIMITER //
 
-
 CREATE PROCEDURE InsertarNiveles(
     IN p_Id_Curso INT,
     IN p_Niveles TEXT
@@ -320,6 +341,7 @@ CREATE PROCEDURE InsertarNiveles(
 BEGIN
     DECLARE v_Nivel TEXT;
     DECLARE v_Pos INT;
+    DECLARE v_Id_Nivel INT;
 
     WHILE LENGTH(p_Niveles) > 0 DO
         -- Extrae el primer nivel (hasta el delimitador ';').
@@ -343,13 +365,53 @@ BEGIN
             SUBSTRING_INDEX(SUBSTRING_INDEX(v_Nivel, '|', 4), '|', -1),
             p_Id_Curso
         );
+
+        -- Obtener el ID del nivel recién insertado
+        SET v_Id_Nivel = LAST_INSERT_ID();
+
+        -- Insertar multimedia (archivos adjuntos, imágenes, link externo, texto contenido) si existen
+        CALL InsertarMultimedia(v_Id_Nivel, 
+            SUBSTRING_INDEX(v_Nivel, '|', 5),  -- Archivo adjunto
+            SUBSTRING_INDEX(v_Nivel, '|', 6),  -- Link externo
+            SUBSTRING_INDEX(v_Nivel, '|', 7)   -- Imagen
+        );
+
     END WHILE;
 END //
 
 DELIMITER ;
 
 
+DELIMITER //
 
+CREATE PROCEDURE InsertarMultimedia(
+    IN p_Id_Nivel INT,
+    IN p_ArchivoAdjunto VARCHAR(200),
+    IN p_LinkExterno VARCHAR(255),
+    IN p_Imagen LONGBLOB
+)
+BEGIN
+    -- Insertar los datos multimedia en la tabla Multimedia
+    IF p_ArchivoAdjunto IS NOT NULL THEN
+        INSERT INTO Multimedia (ArchivoAdjunto, Id_Nivel)
+        VALUES (p_ArchivoAdjunto, p_Id_Nivel);
+    END IF;
+
+    IF p_LinkExterno IS NOT NULL THEN
+        INSERT INTO Multimedia (LinkExterno, Id_Nivel)
+        VALUES (p_LinkExterno, p_Id_Nivel);
+    END IF;
+
+    IF p_Imagen IS NOT NULL THEN
+        INSERT INTO Multimedia (Imagen, Id_Nivel)
+        VALUES (p_Imagen, p_Id_Nivel);
+    END IF;
+END //
+
+DELIMITER ;
+
+
+/*
 DELIMITER //
 
 CREATE PROCEDURE InsertarMultimedia(
@@ -383,7 +445,7 @@ BEGIN
 END //
 
 DELIMITER ;
-
+*/
 
 /*EDITAR CURSO (SOLO CURSO, NO NIVELES)*/
 

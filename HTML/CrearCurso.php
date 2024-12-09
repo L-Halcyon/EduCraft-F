@@ -56,9 +56,16 @@
                     <input type="text" class="form-control" id="tituloCurso" placeholder="Título del curso" required>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="categoriaCurso">Categoría del curso</label>
+                    <select class="form-control" id="categoriaCurso" required>
+                        <option value="" disabled selected>Seleccione una categoría</option>
+                        <!-- Opciones dinámicas serán añadidas aquí -->
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
                     <label for="imagenCurso">Imagen del curso</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagenCurso" required>
+                        <input type="file" class="custom-file-input" id="imagenCurso" name="imagenCurso" required>
                         <label class="custom-file-label" for="imagenCurso">Seleccionar archivo</label>
                     </div>
                 </div>
@@ -86,6 +93,11 @@
 
             <!-- Contenedor para los Niveles -->
             <div id="niveles-container"></div>
+
+            <input type="hidden" name="categoriasData" id="categoriasData">
+            <input type="hidden" name="nivelesData" id="nivelesData">
+            <input type="hidden" name="multimedia" id="multimedia">
+
 
             <!-- Botón para crear el curso -->
             <button type="submit" class="btn btn-primary btn-block mt-4" style="max-width: 200px; margin: 0 auto;">Crear curso</button>

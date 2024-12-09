@@ -2,6 +2,8 @@
 
 USE DB_BDM_CURSOS;
 
+DROP FUNCTION IF EXISTS CalcularPromedioCalificacionCURSO;
+
 /*Contar Cuantos likes y dislikes hay en un curso*/
 DELIMITER //
 

@@ -2,6 +2,17 @@ CREATE DATABASE IF NOT EXISTS DB_BDM_CURSOS;
 USE DB_BDM_CURSOS;
 -- DROP DATABASE DB_BDM_CURSOS;
 
+DROP TABLE IF EXISTS Mensaje;
+DROP TABLE IF EXISTS Chat;
+DROP TABLE IF EXISTS Diploma;
+DROP TABLE IF EXISTS Transaccion;
+DROP TABLE IF EXISTS Comentario;
+DROP TABLE IF EXISTS Multimedia;
+DROP TABLE IF EXISTS Nivel;
+DROP TABLE IF EXISTS Curso;
+DROP TABLE IF EXISTS Categoria;
+DROP TABLE IF EXISTS Usuario;
+
 CREATE TABLE Usuario (
     Id_Usuario INT AUTO_INCREMENT PRIMARY KEY,
     Rol VARCHAR(20),
@@ -52,7 +63,7 @@ CREATE TABLE Nivel (
     CostoNivel FLOAT,
     TituloNivel VARCHAR(100),
     Descripcion VARCHAR(200),
-    Video VARCHAR(200),
+    Video VARCHAR(100),
     Id_Curso INT,
     FOREIGN KEY (Id_Curso) REFERENCES Curso(Id_Curso)
 );
@@ -60,9 +71,11 @@ CREATE TABLE Nivel (
 
 CREATE TABLE Multimedia (
     Id_Multimedia INT AUTO_INCREMENT PRIMARY KEY,
-    Archivo VARCHAR(200),
-    Id_Curso INT,
-    FOREIGN KEY (Id_Curso) REFERENCES Curso(Id_Curso)
+    ArchivoAdjunto VARCHAR(200) DEFAULT NULL, -- Ruta o nombre del archivo adjunto
+    LinkExterno VARCHAR(255) DEFAULT NULL,    -- Enlace externo
+    Imagen LONGBLOB DEFAULT NULL,             -- Imagen en formato binario
+    Id_Nivel INT,                             -- Relación con la tabla Nivel
+    FOREIGN KEY (Id_Nivel) REFERENCES Nivel(Id_Nivel) -- Clave foránea que hace referencia a Nivel
 );
 
 
@@ -103,6 +116,28 @@ CREATE TABLE Diploma (
 );
 
 
+CREATE TABLE Chat (
+    ID_Chat INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Estudiante INT NOT NULL,
+ ID_Profesor INT NOT NULL,
+FechaInicio DATETIME DEFAULT CURRENT_TIMESTAMP,
+ CONSTRAINT FK_Chat_Estudiante FOREIGN KEY (ID_Estudiante) REFERENCES Usuario(Id_Usuario),
+ CONSTRAINT FK_Chat_VProfesor FOREIGN KEY (ID_Profesor) REFERENCES Usuario(Id_Usuario)
+  
+);
+
+
+CREATE TABLE Mensaje (
+    ID_Mensaje INT AUTO_INCREMENT PRIMARY KEY,
+    HoraFechaMensaje DATETIME,
+    TextoMensaje VARCHAR(500),
+    ID_USUARIO INT,
+    CHAT_ID INT NOT NULL,
+    CONSTRAINT FK_Mensaje_Usuario FOREIGN KEY (ID_USUARIO) REFERENCES Usuario(Id_Usuario),
+    CONSTRAINT FK_Mensaje_Chat FOREIGN KEY (CHAT_ID) REFERENCES Chat(ID_Chat)
+);
+
+/*
 CREATE TABLE Mensaje (
     Id_Mensaje INT AUTO_INCREMENT PRIMARY KEY,
     TextoMensaje VARCHAR(200),
@@ -110,3 +145,4 @@ CREATE TABLE Mensaje (
     Id_Usuario INT,
     FOREIGN KEY (Id_Usuario) REFERENCES Usuario(Id_Usuario)
 );
+*/
