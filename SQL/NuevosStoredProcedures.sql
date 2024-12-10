@@ -32,6 +32,10 @@ DROP PROCEDURE IF EXISTS IniciarSesion;
 DROP PROCEDURE IF EXISTS ObtenerReporteInstructores;
 DROP PROCEDURE IF EXISTS ObtenerReporteEstudiantes;
 
+
+DROP PROCEDURE IF EXISTS ObtenerReporteVendedor;
+DROP PROCEDURE IF EXISTS ObtenerDetalleVentaPorAlumno;
+
 -- LOGIN
 DELIMITER //
 
@@ -183,6 +187,63 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE ObtenerReporteVendedor(IN vendedorId INT)
+BEGIN
+    SELECT 
+        vc.TituloCurso AS Curso,
+        vc.AlumnosInscritos,
+        vc.NivelPromedioCursado,
+        vc.IngresosTotales
+    FROM 
+        VistaCursosVendedor vc
+    JOIN 
+        Curso c ON vc.Id_Curso = c.Id_Curso
+    WHERE 
+        c.Id_Usuario = vendedorId;
+
+    -- Ingresos totales generales
+    SELECT 
+        SUM(vc.IngresosTotales) AS TotalIngresos
+    FROM 
+        VistaCursosVendedor vc
+    JOIN 
+        Curso c ON vc.Id_Curso = c.Id_Curso
+    WHERE 
+        c.Id_Usuario = vendedorId;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE ObtenerDetalleVentaPorAlumno(IN vendedorId INT)
+BEGIN
+    SELECT 
+        c.TituloCurso AS Curso,
+        u.NombreCompleto AS Alumno,
+        t.FechaInscripcion,
+        CEIL((t.ProgresoCurso / 100.0) * c.CantidadNiveles) AS NivelAvance,
+        t.MetodoPago,
+        t.MontoPagado
+    FROM 
+        Transaccion t
+    JOIN 
+        Curso c ON t.Id_Curso = c.Id_Curso
+    JOIN 
+        Usuario u ON t.Id_Usuario = u.Id_Usuario
+    WHERE 
+        c.Id_Usuario = vendedorId
+    ORDER BY 
+        c.TituloCurso, u.NombreCompleto;
+END$$
+DELIMITER ;
+
+
 
 
 
