@@ -49,7 +49,7 @@
         <h2 class="text-center">Crear Curso</h2>
 
         <!-- Formulario de Curso -->
-        <form id="form-crear-curso">
+        <form id="form-crear-curso"  enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="tituloCurso">Título del curso</label>
@@ -67,7 +67,15 @@
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="imagenCurso" name="imagenCurso" required>
                         <label class="custom-file-label" for="imagenCurso">Seleccionar archivo</label>
+                        
+                        <label for="archivosAdjuntos${i}">Archivos adjuntos (Opcional)</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="archivosAdjuntos${i}" multiple>
+                            <label class="custom-file-label" for="archivosAdjuntos${i}">Seleccionar archivos</label>
+                        </div>
+                    
                     </div>
+
                 </div>
             </div>
 

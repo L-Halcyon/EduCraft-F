@@ -5,7 +5,7 @@ class Conexion {
     public function __construct() {
         $Host = 'localhost';
         $Usuario = 'root';
-        $Contrasena = '51423dsca';
+        $Contrasena = 'redhoodie007';
         $Puerto = 3306;
         $DBnombre = 'db_bdm_cursos'; // Nombre de la base de datos
         

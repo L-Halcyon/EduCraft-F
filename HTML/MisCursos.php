@@ -48,32 +48,10 @@
 
     <!-- Main Content -->
     <main class="container my-5">
-        <!-- Sección Mis Cursos -->
-        <h1 class="text-center mb-4">Mis Cursos</h1>
+           <!-- Sección Mis Cursos -->
+            <h1 class="text-center mb-4">Mis Cursos</h1>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="course-card">
-                    <h3>Curso de Marketing Digital</h3>
-                    <p>Calificación (95%)</p>
-                    <button class="btn btn-danger mt-2">Dar de baja</button>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="course-card">
-                    <h3>Curso de Programación en Python</h3>
-                    <p>Calificación (90%)</p>
-                    <button class="btn btn-danger mt-2">Dar de baja</button>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="course-card">
-                    <h3>Curso de Diseño Web</h3>
-                    <p>Calificación (100%)</p>
-                    <button class="btn btn-danger mt-2">Dar de baja</button>
-                </div>
-            </div>
-        </div>
+        <div id="cursosContainer" class="mt-4"></div>
 
         <!-- Sección Certificados -->
         <section class="certificados-section">
@@ -122,7 +100,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Custom JS -->
-    <script src="../scripts/MisCursos.js"></script>
+    <script src="../JS/MisCursos.js"></script>
     <!-- Archivo JS personalizado -->
     <script src="../JS/UsuarioLogueado-1.js"></script>
 </body>

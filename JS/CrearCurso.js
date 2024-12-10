@@ -4,35 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formCrearCurso = document.getElementById('form-crear-curso');
     const categoriaSelect = document.getElementById("categoriaCurso");
 
-    // Función para cargar las categorías
-    function cargarCategorias() {
-        fetch("http://localhost:3000/PHP/ObtenerCategoriasCursos.php")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Error al obtener las categorías");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data.success) {
-                    data.categorias.forEach((categoria) => {
-                        const option = document.createElement("option");
-                        option.value = categoria.id;
-                        option.textContent = categoria.nombre;
-                        categoriaSelect.appendChild(option);
-                    });
-                } else {
-                    console.error("Error en la respuesta:", data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Error al cargar categorías:", error);
-            });
-    }
-
-    // Llamar a la función para cargar categorías
-    cargarCategorias();
-
+   
     // Crear niveles dinámicos
     btnCrearNiveles.addEventListener('click', () => {
         const cantidadNiveles = parseInt(document.getElementById('cantidadNiveles').value);
@@ -59,26 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             <label class="custom-file-label" for="videoNivel${i}">Seleccionar archivo</label>
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="archivosAdjuntos${i}">Archivos adjuntos (Opcional)</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="archivosAdjuntos${i}" multiple>
-                            <label class="custom-file-label" for="archivosAdjuntos${i}">Seleccionar archivos</label>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="linkExterno${i}">Link externo (Opcional)</label>
-                        <input type="url" class="form-control" id="linkExterno${i}" placeholder="URL">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="imagenesNivel${i}">Imágenes (Opcional)</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imagenesNivel${i}" accept="image/*" multiple>
-                            <label class="custom-file-label" for="imagenesNivel${i}">Seleccionar imágenes</label>
-                        </div>
-                    </div>
+                   
                 </div>
                 <div class="form-group">
                     <label for="textoContenido${i}">Texto del contenido (Opcional)</label>
@@ -208,26 +164,29 @@ function prepararDatosFormulario() {
 
         const tituloNivel = tituloNivelElement.value.trim();
         const descripcionNivel = descripcionNivelElement.value.trim();
-        const videoNivel = videoNivelElement ? videoNivelElement.files[0] : null;  // Verificar si el video existe
+        const videoNivel = videoNivelElement ? videoNivelElement.files[0] : null;
         const costoNivel = costoNivelElement.value.trim();
 
+        const nombreVideoNivel = videoNivel ? videoNivel.name : '';
+        
+        
+        
         // Crear objeto para cada nivel
         const nivelData = {
             titulo: tituloNivel,
             descripcion: descripcionNivel,
-            video: videoNivel,
-            costo: costoNivel
+            costo: costoNivel,
+            videoNombre: nombreVideoNivel  // Agregar el nombre del archivo
+
         };
 
         // Campos opcionales
         const archivosAdjuntos = nivel.querySelector(`#archivosAdjuntos${nivelIndex}`)?.files ?? [];
-        const linkExterno = nivel.querySelector(`#linkExterno${nivelIndex}`)?.value.trim() ?? '';
-        const imagenesNivel = nivel.querySelector(`#imagenesNivel${nivelIndex}`)?.files ?? [];
+      
         const textoContenido = nivel.querySelector(`#textoContenido${nivelIndex}`)?.value.trim() ?? '';
 
         nivelData.archivosAdjuntos = Array.from(archivosAdjuntos).map(archivo => archivo.name);
-        nivelData.imagenesNivel = Array.from(imagenesNivel).map(imagen => imagen.name);
-        nivelData.linkExterno = linkExterno;
+        
         nivelData.textoContenido = textoContenido;
 
         nivelesData.push(nivelData);
@@ -259,14 +218,7 @@ function actualizarEtiquetasArchivo() {
 // Enviar datos al servidor
 async function enviarDatosCurso(formData) {
     try {
-        /*// Obtener los datos de los campos ocultos
-        const nivelesData = document.getElementById('nivelesData').value;
-        const categoriasData = document.getElementById('categoriasData').value;
-
-        // Asegurarse de que se agreguen los datos de los campos ocultos al FormData
-        formData.append('nivelesData', nivelesData);
-        formData.append('categoriasData', categoriasData);*/
-
+         
         const response = await fetch('../PHP/CrearCurso.php', {
             method: 'POST',
             body: formData,
@@ -287,3 +239,22 @@ async function enviarDatosCurso(formData) {
     }
 }
 
+
+
+//Cargar Las categorias en el cb
+document.addEventListener("DOMContentLoaded", function() {
+    const categorySelect = document.getElementById("categoriaCurso");
+
+    // Cargar las categorías desde el servidor
+    fetch("../PHP/ObtenerCategorias.php")
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(categoria => {
+                const option = document.createElement("option");
+                option.value = categoria.Id_Categoria;
+                option.textContent = categoria.Nombre;
+                categorySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error("Error al cargar las categorías:", error));
+});

@@ -63,3 +63,46 @@ WHERE
 ORDER BY 
     FechaCreacionCurso DESC
 LIMIT 5;
+
+
+
+DROP VIEW IF EXISTS VistaCursosPorUsuario;
+
+CREATE VIEW VistaCursosPorUsuario AS
+SELECT
+    c.Id_Curso,
+    c.TituloCurso,
+    c.CantidadNiveles,
+    c.CostoCompleto,
+    c.DescripcionCurso,
+    c.PromedioCalificacion,
+    c.ImagenCurso,
+    c.EstatusCurso,
+    c.NumeroVentas,
+    c.FechaCreacionCurso,
+    c.Id_Usuario,
+    c.Id_Categoria,
+    cat.NombreCategoria,
+    cat.DescripcionCategoria
+FROM
+    Curso c
+JOIN
+    Categoria cat ON c.Id_Categoria = cat.Id_Categoria;
+
+
+
+
+DROP VIEW IF EXISTS Vista_CursoConCategoria;
+
+CREATE VIEW Vista_CursoConCategoria AS
+SELECT 
+    c.Id_Curso,
+    c.TituloCurso,
+    c.DescripcionCurso,
+    c.CostoCompleto,
+    c.ImagenCurso,
+    cat.Id_Categoria,
+    cat.NombreCategoria
+FROM Curso c
+JOIN Categoria cat ON c.Id_Categoria = cat.Id_Categoria;
+
