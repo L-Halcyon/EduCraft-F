@@ -159,3 +159,23 @@ ORDER BY PromedioCalificacion DESC
 LIMIT 5;
 >>>>>>> Stashed changes
 
+
+
+
+DROP VIEW IF EXISTS VistaCursosVendedor;
+
+CREATE VIEW VistaCursosVendedor AS
+SELECT 
+    c.Id_Curso,
+    c.TituloCurso,
+    c.CantidadNiveles,
+    COUNT(t.Id_Transaccion) AS AlumnosInscritos,
+    ROUND(SUM(t.ProgresoCurso / 100.0 * c.CantidadNiveles) / COUNT(t.Id_Transaccion), 1) AS NivelPromedioCursado,
+    SUM(t.MontoPagado) AS IngresosTotales
+FROM 
+    Curso c
+LEFT JOIN 
+    Transaccion t ON c.Id_Curso = t.Id_Curso
+
+GROUP BY 
+    c.Id_Curso;
