@@ -66,6 +66,7 @@ LIMIT 5;
 
 
 
+
 DROP VIEW IF EXISTS VistaCursosPorUsuario;
 
 CREATE VIEW VistaCursosPorUsuario AS
@@ -105,4 +106,16 @@ SELECT
     cat.NombreCategoria
 FROM Curso c
 JOIN Categoria cat ON c.Id_Categoria = cat.Id_Categoria;
+
+
+-- -------------------------
+CREATE VIEW UsuariosInactivos AS
+SELECT 
+    Id_Usuario,
+    NombreCompleto,
+    Rol,
+    EstatusUsuario,
+    NumeroIntentosContraseña
+FROM Usuario
+WHERE NumeroIntentosContraseña >= 3 AND EstatusUsuario = 'Inactivo';
 

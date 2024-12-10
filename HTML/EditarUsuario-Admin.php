@@ -43,12 +43,78 @@
     </nav>
 
     <!-- Main Content -->
+    <div class="container mt-5">
+    <form enctype="multipart/form-data" method="POST" action="../PHP/EditarUsuario.php">
+            <!-- Campo oculto para idUsuario -->
+            <input type="hidden" id="idUsuario" name="idUsuario">
+            <div class="row">
+                <!-- Columna de la Foto del Usuario -->
+                <div class="col-md-4 text-center">
+                    <div class="image-container-wrapper">
+                        <div class="image-container">
+                            <img id="userImage" src="../img/perfil.jpg" class="img-fluid rounded mb-3" alt="Imagen del usuario">
+                        </div>
+                    </div>
+                    <input type="file" id="fileInput" name="fileInput" accept="image/*" class="d-none">
+                    <button id="changeImageBtn" class="btn btn-brown btn-block" type="button">Cambiar foto de usuario</button>
+                </div>
+
+                <!-- Columnas de los Campos del Formulario -->
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nombreCompleto" class="text-brown">Nombre Completo:</label>
+                                <input type="text" class="form-control border-brown form-background" id="nombreCompleto" name="nombreCompleto" placeholder="Nombre Completo">
+                            </div>
+                            <div class="form-group">
+                                <label for="genero" class="text-brown">Género:</label>
+                                <select class="form-control border-brown form-background" id="genero" name="genero">
+                                <option value="">Seleccionar género</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="correoElectronico" class="text-brown">Correo electrónico:</label>
+                                <input type="email" class="form-control border-brown form-background" id="correoElectronico" name="correoElectronico" placeholder="Correo electrónico" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fechaNacimiento" class="text-brown">Fecha de Nacimiento:</label>
+                                <input type="date" class="form-control border-brown form-background" id="fechaNacimiento" name="fechaNacimiento">
+                            </div>
+                            <div class="form-group">
+                                <label for="contrasena" class="text-brown">Contraseña:</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control border-brown form-background" id="contrasena" name="contrasena" placeholder="Contraseña">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-brown" type="button" id="togglePassword">
+                                            <i class="fas fa-eye" id="toggleIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-brown btn-block">Guardar cambios</button>
+                    <div id="messages" class="alert mt-3" style="display: none;"></div>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+    <!--
+    <!- Main Content ->
     <form enctype="multipart/form-data">
     <div class="container mt-5">
         <div class="row">
-            <!-- Columna de la Foto del Usuario -->
+            <!- Columna de la Foto del Usuario ->
             <div class="col-md-4 text-center">
-                <div class="image-container-wrapper"> <!-- Caja envolvente con margen -->
+                <div class="image-container-wrapper"> <!- Caja envolvente con margen ->
                     <div class="image-container">
                         <img id="userImage" src="../img/perfil.jpg" class="img-fluid rounded mb-3" alt="Imagen del usuario">
                     </div>
@@ -58,7 +124,7 @@
             </div>
             
     
-            <!-- Columnas de los Campos del Formulario -->
+            <!- Columnas de los Campos del Formulario ->
             <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-6">
@@ -99,16 +165,12 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-brown btn-block">Guardar cambios</button>
-                            <!-- Botón Eliminar Cuenta -->
-                            <div class="container text-center mt-4">
-                                 <button class="btn btn-delete">Eliminar Cuenta</button>
-                            </div>
+                    <button type="submit" class="btn btn-brown btn-block">Guardar cambios</button>                    
                 </form>
             </div>
         </div>
     </div>
-    
+    -->
 
     <footer class="text-center mt-5 p-3 bg-brown text-brown">
         <p>© 2024 EduCraft. Todos los derechos reservados.</p>
