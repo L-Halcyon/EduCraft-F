@@ -92,6 +92,10 @@ $(document).ready(function () {
 
         // Si las validaciones son correctas
         if (valido) {
+            // Limpiar mensajes previos
+            const mensajes2 = $('#messages');
+            mensajes2.hide().removeClass().text('');
+
             const formData = new FormData();
             formData.append('idUsuario', sessionStorage.getItem('idUsuario')); // Recuperar ID del usuario desde el almacenamiento
             formData.append('nombreCompleto', nombreCompleto);
@@ -109,9 +113,12 @@ $(document).ready(function () {
                 data: formData,
                 processData: false,
                 contentType: false,
+                dataType: 'json', // Asegura que jQuery interprete la respuesta como JSON
                 success: function (response) {
+                    console.log("Respuesta del servidor:", response); // Depuración
                     if (response.success) {
-                        mensajes.addClass('alert alert-success').text(response.message).show();
+                        console.log("EXITO"); // Depuración
+                        mensajes2.addClass('alert alert-success').text(response.message).show();
                         // Recargar la página después de 2 segundos
                         setTimeout(function () {
                             location.reload();
@@ -119,7 +126,7 @@ $(document).ready(function () {
                     } 
                 },
                 error: function () {
-                    mensajes.addClass('alert alert-danger').text('Error al actualizar los datos.').show();
+                    mensajes2.addClass('alert alert-danger').text(response.message).show();
                 }
             });
         }
