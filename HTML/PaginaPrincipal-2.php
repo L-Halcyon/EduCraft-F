@@ -32,12 +32,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../HTML/EditarUsuario.php">Perfil</a>
                         <a class="dropdown-item" href="../HTML/Kardex.php">Kardex</a>
-<<<<<<< Updated upstream
                         <a class="dropdown-item" href="../HTML/ChatCursoInicio.php">Mensajes</a>
 
-=======
-                        <a class="dropdown-item" href="../HTML/Mensajeria-Estudiante.php">Mensajes</a>
->>>>>>> Stashed changes
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="../HTML/PaginaPrincipal.php">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
                     </div>
@@ -46,73 +42,6 @@
         </div>
     </nav>
 
-<<<<<<< Updated upstream
-        <!-- Main Content -->
-        <main class="container my-5">
-            <h1 class="text-center mb-4">Buscar cursos</h1>
-            <form class="search-form mb-5">
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="tituloCurso">Título del Curso</label>
-                        <input type="text" class="form-control" id="tituloCurso" placeholder="Título del Curso">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="instructor">Instructor</label>
-                        <input type="text" class="form-control" id="instructor" placeholder="Instructor">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="fechaDesde">Fecha de Publicación (Desde)</label>
-                        <input type="date" class="form-control" id="fechaDesde">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="fechaHasta">Fecha de Publicación (Hasta)</label>
-                        <input type="date" class="form-control" id="fechaHasta">
-                    </div>
-                    <div class="form-group col-md-4 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary btn-block">Buscar curso(s)</button>
-                    </div>
-                </div>
-            </form>
-
-    <main class="container">
-        <section class="course-categories text-center">
-            <h2>Categorías de cursos</h2>
-            <p>Explore nuestros cursos mejor calificados en varias categorías.</p>
-            <div class="categories-container">
-                <button class="category-item btn">IT & Software<br><span>Explora cursos de programación, ciberseguridad y más.</span></button>
-                <button class="category-item btn">Marketing<br><span>Aprenda marketing digital, redes sociales y más.</span></button>
-                <button class="category-item btn">Negocio<br><span>Mejora tus habilidades empresariales con nuestros cursos.</span></button>
-                <button class="category-item btn">Diseño<br><span>Explore cursos de diseño gráfico, UX/UI y más.</span></button>
-                <button class="category-item btn">Desarrollo personal<br><span>Potencia tu crecimiento personal y profesional.</span></button>
-                <button class="category-item btn">Salud y Fitness<br><span>Mejora tu salud y bienestar con nuestros cursos.</span></button>
-            </div>
-        </section>
-        <a href="#" class="all-courses-btn">Ver todos los cursos disponibles</a>
-
-        <section class="featured-courses">
-            <div class="course-card">
-                <img src="../img/Diseño-Web.jpg" alt="Curso de Diseño Web">
-                <h3>Curso de Diseño Web</h3>
-                <p>Calificación (100%)</p>
-                <a class="course-btn btn" href="../HTML/ComprarCurso.php">Ver más</a>
-
-            </div>
-            <div class="course-card">
-                <img src="../img/Bootstrap.png" alt="Aprende a usar Bootstrap">
-                <h3>Aprende a usar Bootstrap</h3>
-                <p>Calificación (98%)</p>
-                <a class="course-btn btn" href="#">Ver más</a>
-            </div>
-            <div class="course-card">
-                <img src="../img/Unreal-Engine.png" alt="Aprende a usar Unreal Engine">
-                <h3>Aprende a usar Unreal Engine</h3>
-                <p>Calificación (98%)</p>
-                <a class="course-btn btn" href="#">Ver más</a>
-            </div>
-            
-=======
     <!-- Main Content -->
     <main class="container my-5">
         <h1 class="text-center mb-4">Buscar cursos</h1>
@@ -162,7 +91,6 @@
 
         <section id="coursesContainer" class="featured-courses mt-5">
             <!-- Aquí se mostrarán los resultados en cards -->
->>>>>>> Stashed changes
         </section>
     </main>
 
@@ -177,10 +105,7 @@
 
     <!-- Archivo JS personalizado -->
     <script src="../JS/UsuarioLogueado-1.js"></script>
-<<<<<<< Updated upstream
-=======
     <!--<script src="../JS/PaginaPrincipal-2.js"></script>-->
     <script src="../JS/BuscarCursos.js"></script>
->>>>>>> Stashed changes
 </body>
 </html>
