@@ -252,20 +252,6 @@ END //
 
 DELIMITER ;
 
-DELIMITER $$
-
-CREATE PROCEDURE ObtenerUsuariosInactivos()
-BEGIN
-    -- Consultar la vista UsuariosInactivos
-    SELECT Id_Usuario, NombreCompleto, Rol, EstatusUsuario, NumeroIntentosContraseña
-    FROM UsuariosInactivos;
-END $$
-
-DELIMITER ;
-
-
-
-
 /*----------------------------CATEGORIAS------------------------------------*/
 
 

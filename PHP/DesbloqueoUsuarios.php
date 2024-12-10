@@ -1,5 +1,4 @@
-<?php
-// Incluir el archivo de conexión a la base de datos
+<?php 
 require_once('Conexion.php');
 
 // Crear una instancia de la clase Conexion
@@ -8,8 +7,8 @@ $conn = $conexion->obtenerConexion();
 
 // Verificar si la solicitud es GET o POST
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Consulta SQL para obtener los usuarios inactivos
-    $query = "SELECT Id_Usuario, NombreCompleto, Rol, EstatusUsuario FROM Usuario WHERE EstatusUsuario = 'Inactivo' AND NumeroIntentosContraseña >= 3";
+    // Consulta SQL para obtener los usuarios inactivos desde la vista
+    $query = "SELECT Id_Usuario, NombreCompleto, Rol, EstatusUsuario FROM UsuariosInactivos";
 
     // Ejecutar la consulta
     $stmt = $conn->prepare($query);
