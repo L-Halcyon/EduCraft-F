@@ -1,3 +1,7 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -100,9 +104,6 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-brown btn-block">Guardar cambios</button>
-                    <div class="text-center mt-4">
-                        <button class="btn btn-delete" type="button">Eliminar Cuenta</button>
-                    </div>
                     <div id="messages" class="alert mt-3" style="display: none;"></div>
                 </div>
                 
