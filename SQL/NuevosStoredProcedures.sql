@@ -10,6 +10,12 @@ DROP PROCEDURE IF EXISTS InsertarMultimedia;
 DROP PROCEDURE IF EXISTS InsertarNiveles;
 DROP PROCEDURE IF EXISTS InsertarCurso;
 
+DROP PROCEDURE IF EXISTS BajaLogicaCurso
+
+DROP PROCEDURE IF EXISTS ObtenerCursosPorUsuario
+
+DROP PROCEDURE IF EXISTS obtenerInfo_curso
+
 DROP PROCEDURE IF EXISTS BajaCategoria;
 DROP PROCEDURE IF EXISTS ModificarCategoria;
 DROP PROCEDURE IF EXISTS CrearCategoria;
@@ -521,16 +527,38 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE BajaLogicaCurso(
-    IN p_Id_Curso INT
-)
+CREATE PROCEDURE BajaLogicaCurso(IN p_Id_Curso INT)
 BEGIN
-    DELETE FROM Curso
+    UPDATE Curso
+    SET EstatusCurso = 'Inactivo'
     WHERE Id_Curso = p_Id_Curso;
+
+    
 END //
 
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE ObtenerCursosPorUsuario(IN usuarioId INT)
+BEGIN
+    SELECT * FROM VistaCursosPorUsuario WHERE Id_Usuario = usuarioId
+    AND EstatusCurso = 'Activo';
+END //
 
 DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE PROCEDURE obtenerInfo_curso (IN p_idCurso INT)
+BEGIN
+    SELECT * FROM Vista_CursoConCategoria WHERE Id_Curso = p_idCurso;
+END$$
+
+DELIMITER ;
+
 
 
 /*-----------------COMENTARIO (Y ACTUALIZAR EL PROMEDIO DEL CURSO)---------------*/

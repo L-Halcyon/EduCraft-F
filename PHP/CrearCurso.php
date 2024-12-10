@@ -36,17 +36,12 @@ try {
             $tituloNivel = $nivel['titulo'];
             $descripcionNivel = $nivel['descripcion'];
             $costoNivel = floatval($nivel['costo']);
-            //$videoNivel = $nivel['video'] ?? null;
-
+    $videoNombre = $nivel['videoNombre'] ?? null;  // Obtener el nombre del video
             if (empty($tituloNivel) || empty($descripcionNivel) || $costoNivel < 0) {
                 throw new Exception("Datos del nivel " . ($index + 1) . " son invalidos.");
             }
 
-            // Guardar video en la carpeta local (opcional, según necesidades)
-            /*$rutaVideo = "../uploads/niveles/videos/{$videoNivel}";
-            if (!move_uploaded_file($_FILES["nivel{$index}_video"]['tmp_name'], $rutaVideo)) {
-                throw new Exception("Error al subir el video del nivel " . ($index + 1) . ".");
-            }*/
+      
 
             // Procesar el archivo de video
             $videoKey = "nivel{$index}_video"; // Clave dinámica para el archivo
@@ -54,11 +49,11 @@ try {
 
             if (isset($_FILES[$videoKey]) && $_FILES[$videoKey]['error'] === UPLOAD_ERR_OK) {
                 $uploadDir = "../uploads/niveles/videos/";
-                $nombreArchivo = basename($_FILES[$videoKey]['name']);
-                $rutaVideo = $uploadDir . $nombreArchivo;
-
+                $nombreArchivo = basename($_FILES[$videoKey]['name']); // Solo el nombre del archivo, no la ruta completa
+                $rutaVideo = $nombreArchivo; // Guardar solo el nombre del archivo
+    
                 // Mover el archivo subido a su destino
-                if (!move_uploaded_file($_FILES[$videoKey]['tmp_name'], $rutaVideo)) {
+                if (!move_uploaded_file($_FILES[$videoKey]['tmp_name'], $uploadDir . $nombreArchivo)) {
                     echo json_encode([
                         "success" => false,
                         "message" => "Error al subir el video del nivel " . ($index + 1) . "."
@@ -66,12 +61,16 @@ try {
                     exit;
                 }
             }
-
+            if ($videoNombre) {
+               
+                $nivelesData[$index]['videoNombre'] = $videoNombre;
+            }
+    
             // Formatear nivel para el procedimiento almacenado
             $nivelesData[$index] = "{$costoNivel}|{$tituloNivel}|{$descripcionNivel}|{$rutaVideo}";
         }
     }
-
+    
     $niveles = implode(';', $nivelesData);
 
     // Procesar multimedia

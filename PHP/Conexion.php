@@ -8,6 +8,7 @@ class Conexion {
         $Contrasena = '';
         $Puerto = 3307;
         $DBnombre = 'DB_BDM_CURSOS'; // Nombre de la base de datos
+
         
         try {
             // Establecer la conexión con PDO al servidor MySQL
