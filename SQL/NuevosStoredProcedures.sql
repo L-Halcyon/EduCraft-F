@@ -167,26 +167,6 @@ END$$
 
 DELIMITER ;
 
-
-DELIMITER //
-
-CREATE PROCEDURE ObtenerInfoUsuario ( -- este no se usa
-    IN correo VARCHAR(50)
-)
-BEGIN
-    SELECT 
-        ImagenAvatar,
-        NombreCompleto, 
-        Genero, 
-        FechaNacimiento, 
-        Email, 
-        Contraseña
-    FROM Usuario
-    WHERE Email = correo;
-END //
-
-DELIMITER ;
-
 DELIMITER //
 
 CREATE PROCEDURE ObtenerInfoUsuarioPorId (
@@ -205,10 +185,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
-
-
-
 
 
 DELIMITER //
