@@ -59,19 +59,9 @@
             <tbody id="usuariosTableBody">
                 <!-- Datos de usuarios se insertan aquí -->
                 <tr>
-                    <td>Juan Pérez</td>
-                    <td>Estudiante</td>
-                    <td>Deshabilitado</td>
                     <td>
-                        <button class="btn btn-primary">Desbloquear</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ana Gómez</td>
-                    <td>Instructor</td>
-                    <td>Deshabilitado</td>
-                    <td>
-                        <button class="btn btn-primary">Desbloquear</button>
+                        <!-- Los usuarios se cargarán aquí mediante JavaScript -->
+                        <!--<button class="btn btn-primary">Desbloquear</button>-->
                     </td>
                 </tr>
             </tbody>
@@ -90,6 +80,7 @@
 
         <!-- Script para cargar el nombre del usuario -->
         <script src="../JS/UsuarioLogueado-1.js"></script>
+        <script src="../JS/DesbloqueoUsuarios.js"></script>
 
 </body>
 
