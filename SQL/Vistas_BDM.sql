@@ -119,3 +119,23 @@ SELECT
 FROM Usuario
 WHERE NumeroIntentosContraseña >= 3 AND EstatusUsuario = 'Inactivo';
 
+
+
+
+DROP VIEW IF EXISTS VistaCursosInstructoresReporte;
+
+CREATE VIEW VistaCursosInstructoresReporte AS
+SELECT 
+    u.Email AS Usuario,
+    u.NombreCompleto AS Nombre,
+    u.FechaRegistroYActualizacionInfo AS FechaIngreso,
+    COUNT(c.Id_Curso) AS CursosOfrecidos
+FROM 
+    Usuario u
+JOIN 
+    Curso c ON u.Id_Usuario = c.Id_Usuario
+WHERE 
+    u.EstatusUsuario = 'Activo'
+GROUP BY 
+    u.Id_Usuario;
+

@@ -29,6 +29,9 @@ DROP PROCEDURE IF EXISTS ObtenerNombreCompleto;
 DROP PROCEDURE IF EXISTS ObtenerRolUsuario;
 DROP PROCEDURE IF EXISTS IniciarSesion;
 
+DROP PROCEDURE IF EXISTS ObtenerReporteInstructores;
+DROP PROCEDURE IF EXISTS ObtenerReporteEstudiantes;
+
 -- LOGIN
 DELIMITER //
 
@@ -140,6 +143,46 @@ BEGIN
 END//
 
 DELIMITER; 
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE ObtenerReporteInstructores()
+BEGIN
+    SELECT 
+        v.Usuario,
+        v.Nombre,
+        v.FechaIngreso,
+        v.CursosOfrecidos,
+        ObtenerGananciasTotalesInstructor(u.Id_Usuario) AS TotalGanancias
+    FROM VistaCursosInstructoresReporte v
+    JOIN Usuario u ON u.Email = v.Usuario
+    WHERE u.EstatusUsuario = 'Activo';
+END $$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE ObtenerReporteEstudiantes()
+BEGIN
+    SELECT 
+        u.Email AS Usuario,
+        u.NombreCompleto AS Nombre,
+        u.FechaRegistroYActualizacionInfo AS FechaIngreso,
+        COUNT(t.Id_Curso) AS CursosInscritos,
+        IF(COUNT(t.Id_Curso) > 0,
+            (SUM(t.ProgresoCurso) / COUNT(t.Id_Curso)), 0) AS PorcentajeCursosTerminados
+    FROM Usuario u
+    LEFT JOIN Transaccion t ON u.Id_Usuario = t.Id_Usuario
+    WHERE u.EstatusUsuario = 'Activo' AND u.Rol = 'estudiante'  
+    GROUP BY u.Id_Usuario;
+END $$
+
+DELIMITER ;
 
 
 
