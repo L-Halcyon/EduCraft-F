@@ -42,6 +42,27 @@ a h1 {
     background-color: #fff5e1;
 }
 
+
+/* Estilo para el botón del ícono del "ojito" */
+#togglePassword {
+    background-color: transparent;
+    border: none;
+    color: #8b5a2b; /* Color café oscuro */
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    padding: 0 10px; /* Ajuste de espacio */
+    transition: color 0.3s;
+}
+
+#togglePassword:hover {
+    color: #704214; /* Color más oscuro al pasar el mouse */
+}
+
+#toggleIcon {
+    font-size: 18px; /* Tamaño del ícono */
+}
+
 .btn-brown {
     background-color: #AB7843;
     color: #fff;

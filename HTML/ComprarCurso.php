@@ -33,7 +33,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../HTML/EditarUsuario.php">Perfil</a>
                         <a class="dropdown-item" href="../HTML/Kardex.php">Kardex</a>
-                        <a class="dropdown-item" href="../HTML/Mensajeria-Estudiante.php">Mensajes</a>
+                        <a class="dropdown-item" href="../HTML/ChatCursoInicio.php">Mensajes</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="../HTML/PaginaPrincipal.php">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>

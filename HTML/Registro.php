@@ -43,9 +43,9 @@
                     <label for="gender">Género:</label>
                     <select class="form-control custom-input" id="gender" name="gender" >
                         <option value="">Seleccionar género</option>
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
                     </select>
                 </div>
             </div>
