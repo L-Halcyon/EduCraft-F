@@ -27,44 +27,45 @@
             <main class="container my-5">
                 <h1 class="text-center mb-4">Buscar cursos</h1>
                 <form class="search-form mb-5">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="tituloCurso">Título del Curso</label>
-                            <input type="text" class="form-control" id="tituloCurso" placeholder="Título del Curso">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="instructor">Instructor</label>
-                            <input type="text" class="form-control" id="instructor" placeholder="Instructor">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="tituloCurso">Curso disponibles:</label>
+                        <select id="cursoSelect" class="form-control">
+                        <option value="">Ninguna</option>
+                    </select>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="fechaDesde">Fecha de Publicación (Desde)</label>
-                            <input type="date" class="form-control" id="fechaDesde">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="fechaHasta">Fecha de Publicación (Hasta)</label>
-                            <input type="date" class="form-control" id="fechaHasta">
-                        </div>
-                        <div class="form-group col-md-4 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary btn-block">Buscar curso(s)</button>
-                        </div>
+                    <div class="form-group col-md-4">
+                        <label for="instructor">Instructores:</label>
+                        <select id="instructorSelect" class="form-control">
+                        <option value="">Ninguna</option>
+                    </select>
                     </div>
-                </form>
+
+                    <div class="form-group col-md-4">
+                    <label for="categorySelect">Categoría:</label>
+                    <select id="categorySelect" class="form-control">
+                        <option value="">Ninguna</option>
+                    </select>
+                </div>
+
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fechaDesde">Fecha de Publicación (Desde)</label>
+                        <input type="date" class="form-control" id="fechaDesde">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fechaHasta">Fecha de Publicación (Hasta)</label>
+                        <input type="date" class="form-control" id="fechaHasta">
+                    </div>
+                    <div class="form-group col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary btn-block">Buscar curso(s)</button>
+                    </div>
+                </div>
+            </form>
 
     <main class="container">
-        <section class="course-categories text-center">
-            <h2>Categorías de cursos</h2>
-            <p>Explore nuestros cursos mejor calificados en varias categorías.</p>
-            <div class="categories-container">
-                <button class="category-item btn">IT & Software<br><span>Explora cursos de programación, ciberseguridad y más.</span></button>
-                <button class="category-item btn">Marketing<br><span>Aprenda marketing digital, redes sociales y más.</span></button>
-                <button class="category-item btn">Negocio<br><span>Mejora tus habilidades empresariales con nuestros cursos.</span></button>
-                <button class="category-item btn">Diseño<br><span>Explore cursos de diseño gráfico, UX/UI y más.</span></button>
-                <button class="category-item btn">Desarrollo personal<br><span>Potencia tu crecimiento personal y profesional.</span></button>
-                <button class="category-item btn">Salud y Fitness<br><span>Mejora tu salud y bienestar con nuestros cursos.</span></button>
-            </div>
-        </section>
 
         <a href="#" class="all-courses-btn">Ver todos los cursos disponibles</a>
 
@@ -95,8 +96,9 @@
     </footer>
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../JS/PaginaPrincipal-2.js"></script>
 </body>
 </html>
