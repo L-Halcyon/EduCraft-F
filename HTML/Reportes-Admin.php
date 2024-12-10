@@ -1,3 +1,44 @@
+<?php
+require_once '../PHP/Conexion.php';
+
+try {
+    $conexion = new Conexion();
+    
+    $pdo = $conexion->obtenerConexion();
+    
+    $stmt = $pdo->prepare("CALL ObtenerReporteInstructores()");
+    $stmt->execute();
+    
+    $instructores = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $instructores[] = $row; 
+    }
+
+    
+    if (empty($instructores)) {
+        $error_message = "No se encontraron instructores.";
+    }
+
+
+
+
+    $stmt = $pdo->prepare("CALL ObtenerReporteEstudiantes()");
+    $stmt->execute();
+    
+    $estudiantes = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $estudiantes[] = $row; 
+    }
+    
+    if (empty($estudiantes)) {
+        $error_message = "No se encontraron estudiantes.";
+    }
+
+} catch (PDOException $e) {
+    echo 'Error: ' . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,44 +82,45 @@
         </div>
     </nav>
 
-    <!-- Contenedor del reporte -->
     <div class="container mt-5">
-        <h1 class="text-center">Reporte de Usuarios</h1>
+    <h1 class="text-center">Reporte de Usuarios</h1>
 
-        <!-- Tabla de instructores -->
+    <!-- Tabla de instructores -->
+    <div class="table-responsive mt-4">
+    <h2 class="text-center">Instructores</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Nombre</th>
+                <th>Fecha de Ingreso</th>
+                <th>Cursos Ofrecidos</th>
+                <th>Total de Ganancias</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (isset($error_message)) {
+                echo "<tr><td colspan='5' class='text-center'>$error_message</td></tr>";
+            } else {
+                foreach ($instructores as $instructor) {
+                    echo "<tr>";
+                    echo "<td>{$instructor['Usuario']}</td>";
+                    echo "<td>{$instructor['Nombre']}</td>";
+                    echo "<td>{$instructor['FechaIngreso']}</td>";
+                    echo "<td>{$instructor['CursosOfrecidos']}</td>";
+                    echo "<td>{$instructor['TotalGanancias']}</td>";
+                    echo "</tr>";
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+
+       <!-- Tabla de estudiantes -->
         <div class="table-responsive mt-4">
-            <h2 class="text-center">Instructores</h2>
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>Nombre</th>
-                        <th>Fecha de Ingreso</th>
-                        <th>Cursos Ofrecidos</th>
-                        <th>Total de Ganancias</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>instructor01</td>
-                        <td>Juan Pérez</td>
-                        <td>2022-06-15</td>
-                        <td>5</td>
-                        <td>$1000 MXN</td>
-                    </tr>
-                    <tr>
-                        <td>instructor02</td>
-                        <td>María López</td>
-                        <td>2021-03-25</td>
-                        <td>8</td>
-                        <td>$1500 MXN</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Tabla de estudiantes -->
-        <div class="table-responsive mt-5">
             <h2 class="text-center">Estudiantes</h2>
             <table class="table table-bordered table-hover">
                 <thead>
@@ -87,30 +129,30 @@
                         <th>Nombre</th>
                         <th>Fecha de Ingreso</th>
                         <th>Cursos Inscritos</th>
-                        <th>% Cursos Terminados</th>
+                        <th>Porcentaje de Cursos Terminados</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>estudiante01</td>
-                        <td>Ana García</td>
-                        <td>2023-01-10</td>
-                        <td>3</td>
-                        <td>67%</td>
-                    </tr>
-                    <tr>
-                        <td>estudiante02</td>
-                        <td>Carlos Ruiz</td>
-                        <td>2022-09-15</td>
-                        <td>5</td>
-                        <td>80%</td>
-                    </tr>
+                    <?php
+                    if (isset($error_message)) {
+                        echo "<tr><td colspan='5' class='text-center'>$error_message</td></tr>";
+                    } else {
+                        foreach ($estudiantes as $estudiante) {
+                            echo "<tr>";
+                            echo "<td>{$estudiante['Usuario']}</td>";
+                            echo "<td>{$estudiante['Nombre']}</td>";
+                            echo "<td>{$estudiante['FechaIngreso']}</td>";
+                            echo "<td>{$estudiante['CursosInscritos']}</td>";
+                            echo "<td>" . number_format($estudiante['PorcentajeCursosTerminados'], 2) . "%</td>";
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
-    </div>
 
-    <!-- Footer -->
+            <!-- Footer -->
     <footer class="text-center py-4">
         <p>© 2024 EduCraft. Todos los derechos reservados.</p>
     </footer>

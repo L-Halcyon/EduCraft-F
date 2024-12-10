@@ -34,3 +34,26 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+
+
+
+
+
+DROP FUNCTION IF EXISTS ObtenerGananciasTotalesInstructor;
+
+DELIMITER //
+CREATE FUNCTION ObtenerGananciasTotalesInstructor(instructorId INT) 
+RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+    DECLARE totalGanancias FLOAT DEFAULT 0;
+    SELECT SUM(t.MontoPagado) INTO totalGanancias
+    FROM Transaccion t
+    JOIN Curso c ON t.Id_Curso = c.Id_Curso
+    WHERE c.Id_Usuario = instructorId;
+    RETURN totalGanancias;
+END//
+
+DELIMITER ;
