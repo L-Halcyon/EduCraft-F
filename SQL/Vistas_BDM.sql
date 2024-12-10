@@ -139,3 +139,29 @@ WHERE
 GROUP BY 
     u.Id_Usuario;
 
+
+
+
+DROP VIEW IF EXISTS VistaKardex;
+
+CREATE VIEW VistaKardex AS
+SELECT 
+    T.Id_Transaccion,
+    T.Id_Usuario,
+    C.TituloCurso AS Curso,
+    T.FechaInscripcion,
+    T.FechaUltimoAcceso,
+    T.FechaTerminacion,
+    T.EstadoCurso,
+    T.ProgresoCurso,
+    T.MontoPagado,
+    T.MetodoPago,
+    C.ImagenCurso,
+    C.Id_Curso
+FROM 
+    Transaccion T
+INNER JOIN 
+    Curso C
+ON 
+    T.Id_Curso = C.Id_Curso;
+

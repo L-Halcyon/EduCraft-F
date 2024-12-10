@@ -46,11 +46,12 @@
     </nav>
 
     <div class="container my-4">
+        <div id="messages" class="alert mt-3" style="display: none;"></div>
         <h2>Kardex de Cursos</h2>
         <p>Visualiza tu progreso en los cursos registrados.</p>
 
         <!-- Filtros -->
-        <div class="filters mb-4">
+        <!--<div class="filters mb-4">
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="start-date">Fecha de Inicio:</label>
@@ -81,7 +82,7 @@
                 </div>
             </div>
             <button class="btn btn-primary">Buscar</button>
-        </div>
+        </div>-->
 
         <!-- Tabla Kardex -->
         <table class="table table-bordered">
@@ -97,7 +98,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!--<tr>
                     <td>Curso de Diseño Web</td>
                     <td>12/01/2024</td>
                     <td>25/03/2024</td>
@@ -127,7 +128,7 @@
                         <a class="btn btn-info btn-sm">Ver Curso</a>
                     </td>
                 </tr>
-                <!-- Fila para curso completado con opción de calificación -->
+                <!- Fila para curso completado con opción de calificación ->
                 <tr>
                     <td>Aprende a usar Unreal Engine</td>
                     <td>01/03/2024</td>
@@ -142,7 +143,7 @@
                     <td>
                         <a class="btn btn-info btn-sm">Ver Curso</a>
                     </td>
-                </tr>
+                </tr>-->
 
             </tbody>
         </table>
