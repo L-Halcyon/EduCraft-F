@@ -2,16 +2,12 @@
 
 USE DB_BDM_CURSOS;
 
-<<<<<<< Updated upstream
 DROP VIEW IF EXISTS VistaCategorias;
 DROP VIEW IF EXISTS Top5CursosMejorCalificados;
 DROP VIEW IF EXISTS Top5CursosMasRecientes;
 
 
--- Vista: Mostrar categorías
-=======
 -- Vista: Mostrar categorías 
->>>>>>> Stashed changes
 DROP VIEW IF EXISTS VistaCategorias;
 
 CREATE VIEW VistaCategorias AS
@@ -31,7 +27,7 @@ ON
 
 
 
-<<<<<<< Updated upstream
+
 -- Vista: Top 5 Cursos Más Recientes
 DROP VIEW IF EXISTS Top5CursosMasRecientes;
 
@@ -97,9 +93,8 @@ JOIN Categoria cat ON c.Id_Categoria = cat.Id_Categoria;
 
 
 -- -------------------------
-=======
+
 -- Usuarios inactivos
->>>>>>> Stashed changes
 CREATE VIEW UsuariosInactivos AS
 SELECT 
     Id_Usuario,
@@ -110,7 +105,7 @@ SELECT
 FROM Usuario
 WHERE NumeroIntentosContraseña >= 3 AND EstatusUsuario = 'Inactivo';
 
-<<<<<<< Updated upstream
+
 
 
 
@@ -130,7 +125,7 @@ WHERE
     u.EstatusUsuario = 'Activo'
 GROUP BY 
     u.Id_Usuario;
-=======
+
 -- ------------------------------- Para buscar cursos
 
 -- Vista para mostrar todos los cursos
@@ -152,12 +147,40 @@ SELECT * FROM vw_todos_los_cursos
 ORDER BY FechaCreacionCurso DESC
 LIMIT 5;
 
+
+
+
+
+DROP VIEW IF EXISTS VistaKardex;
+
+CREATE VIEW VistaKardex AS
+SELECT 
+    T.Id_Transaccion,
+    T.Id_Usuario,
+    C.TituloCurso AS Curso,
+    T.FechaInscripcion,
+    T.FechaUltimoAcceso,
+    T.FechaTerminacion,
+    T.EstadoCurso,
+    T.ProgresoCurso,
+    T.MontoPagado,
+    T.MetodoPago,
+    C.ImagenCurso,
+    C.Id_Curso
+FROM 
+    Transaccion T
+INNER JOIN 
+    Curso C
+ON 
+    T.Id_Curso = C.Id_Curso;
+
+
 -- Vista para los cursos mejor calificados
 CREATE VIEW vw_cursos_mejor_calificados AS
 SELECT * FROM vw_todos_los_cursos
 ORDER BY PromedioCalificacion DESC
 LIMIT 5;
->>>>>>> Stashed changes
+
 
 
 
@@ -179,3 +202,4 @@ LEFT JOIN
 
 GROUP BY 
     c.Id_Curso;
+

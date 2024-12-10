@@ -779,16 +779,15 @@
             <h1 class="titulo">EduCraft</h1>
         </div>
         <p class="otorga">Otorga el presente diploma a:</p>
-        <h2 class="nombre-estudiante">Juan Pérez</h2>
-   
+        <h2 class="nombre-estudiante" id="nombre-estudiante">Juan Pérez</h2>
         <p class="descripcion">
             Por haber concluido satisfactoriamente el<br>
-            Curso de Diseño Web<br>
-            el día 15 de Septiembre del 2024
+            <span id="nombre-curso">Curso de Diseño Web</span><br>
+            el día <span id="fecha-terminacion">15 de Septiembre del 2024</span>
         </p>
         <div class="firma">
             <p class="linea-firma">_____________________________</p>
-            <p class="nombre-instructor">Brian Barrero</p>
+            <p class="nombre-instructor" id="nombre-instructor">Brian Barrero</p>
             <p class="titulo-instructor">Instructor</p>
         </div>
     </div>
@@ -798,7 +797,9 @@
         <button id="descargar" class="descargar-btn">Descargar Diploma</button>
     </div>
 
-
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script src="/JS/diploma.js"></script>
 </body>

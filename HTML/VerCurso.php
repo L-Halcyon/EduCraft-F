@@ -45,29 +45,32 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container mt-5">
+    <div class="container mt-5" id="curso-container">
+        <!-- Aquí se cargarán los datos del curso y niveles mediante JavaScript -->
+    </div>
+    <!--<div class="container mt-5">
         <div class="course-header text-center">
             <h1>Curso de Diseño Web</h1>
             <img src="../img/Diseño-Web.jpg" alt="Imagen del curso" class="img-fluid">
             <p class="mt-3 text-left course-description">Aprende a crear sitios web atractivos y funcionales con nuestro curso de Diseño Web. Domina el diseño responsive, la experiencia del usuario y las herramientas actuales para transformar tus ideas en interfaces impactantes.</p>
         </div>
 
-        <!-- Course Levels -->
+        <!- Course Levels ->
         <div class="mt-4">
             <h2 class="text-brown">Niveles del curso</h2>
 
-            <!-- Nivel 1 -->
+            <!- Nivel 1 ->
             <div class="card mt-3">
                 <div class="card-body">
                     <h3 class="level-title">Nivel 1: Introducción al Diseño Web</h3>
                     <p>En este nivel aprenderás los fundamentos básicos del diseño web, incluyendo HTML y CSS.</p>
 
-                    <!-- Video obligatorio -->
+                    <!- Video obligatorio ->
                     <div class="video-container">
                         <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
                     </div>
 
-                    <!-- Contenido adicional en dos columnas -->
+                    <!- Contenido adicional en dos columnas ->
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <p>Archivos adjuntos:</p>
@@ -79,7 +82,7 @@
                         </div>
                     </div>
 
-                    <!-- Imágenes en dos columnas -->
+                    <!- Imágenes en dos columnas ->
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <p>Imagen de referencia:</p>
@@ -91,14 +94,14 @@
                         </div>
                     </div>
 
-                    <!-- Texto adicional -->
+                    <!- Texto adicional ->
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <p>Aquí puedes agregar texto adicional sobre el nivel o cualquier detalle relevante que quieras destacar.</p>
                         </div>
                     </div>
 
-                    <!-- Checkbox de nivel completado -->
+                    <!- Checkbox de nivel completado ->
                     <div class="mt-3">
                         <input type="checkbox" id="nivel1-completado">
                         <label for="nivel1-completado">Marcar como completado</label>
@@ -106,7 +109,7 @@
                 </div>
             </div>
 
-            <!-- Nivel 2 -->
+            <!- Nivel 2 ->
             <div class="card mt-3">
                 <div class="card-body">
                     <h3 class="level-title">Nivel 2: Diseño Responsive</h3>
@@ -121,7 +124,7 @@
                 </div>
             </div>
 
-            <!-- Nivel 3 -->
+            <!- Nivel 3 ->
             <div class="card mt-3">
                 <div class="card-body">
                     <h3 class="level-title">Nivel 3: Interactividad con JavaScript</h3>
@@ -137,14 +140,14 @@
             </div>
         </div>
 
-            <!-- Course Certificate -->
+            <!- Course Certificate ->
             <div class="mt-5">
                 <h2 class="text-brown">Certificado</h2>
                 <p>Una vez que completes todos los niveles del curso, recibirás un certificado con tu nombre y la fecha de finalización.</p>
                 <a href="../HTML/diploma.php" class="btn btn-success">Ver certificado</a>
             </div>
 
-    </div>
+    </div>-->
 
     <!-- Footer -->
     <footer class="text-center mt-5 p-3 bg-brown text-brown">
@@ -156,6 +159,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <!-- Archivo JS personalizado -->
+        <script src="../JS/VerCurso.js"></script>
         <script src="../JS/UsuarioLogueado-1.js"></script>
 </body>
 </html>
