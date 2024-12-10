@@ -60,12 +60,9 @@
             <div class="col-md-4">
                 <label for="categoria">Categoría:</label>
                 <select class="form-control" id="categoria">
-                    <option value="todas">Todas</option>
-                    <option value="IT">IT & Software</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Negocio">Negocio</option>
-                    <option value="Diseño">Diseño</option>
-                    <option value="Personal">Desarrollo Personal</option>
+                <option value="" disabled selected>Seleccione una categoría</option>
+
+                    
                 </select>
             </div>
         </div>
@@ -89,7 +86,6 @@
                 </tr>
             </thead>
             <tbody id="cursosTableBody">
-                <!-- Ejemplo de datos estáticos -->
                 <tr>
                     <td>Curso de Diseño Web</td>
                     <td>50</td>
@@ -127,7 +123,6 @@
                 </tr>
             </thead>
             <tbody id="detalleTableBody">
-                <!-- Ejemplo de datos estáticos -->
                 <tr>
                     <td>Curso de Diseño Web</td>
                     <td>Juan Pérez</td>
@@ -166,6 +161,8 @@
 
     <!-- Archivo JS personalizado -->
     <script src="../JS/UsuarioLogueado-1.js"></script>
+
+    <script src="../JS/Ventas.js"></script>
 </body>
 
 </html>
