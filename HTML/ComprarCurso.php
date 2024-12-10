@@ -46,6 +46,45 @@
     <!-- Main Content -->
     <div class="container mt-5">
         <div class="row">
+            <!-- Imagen y detalles -->
+            <div class="col-md-6">
+                <img id="courseImage" class="img-fluid border rounded" alt="Imagen del curso">
+                <p class="mt-2 text-brown">
+                    <strong>Calificación del curso: </strong><span id="courseRating"></span><br>
+                    <strong>Instructor del curso: </strong><span id="courseInstructor"></span>
+                </p>
+                <a id="messageInstructor" class="btn btn-outline-brown btn-block" href="../HTML/ChatCursoInicio.php">Enviar mensaje al instructor</a>
+            </div>
+            <!-- Descripción y compra -->
+            <div class="col-md-6">
+                <h2 id="courseTitle" class="font-weight-bold text-brown"></h2>
+                <p id="courseDescription" class="text-brown"></p>
+                <div class="mt-4">
+                    <p class="text-brown font-weight-bold"><span id="coursePrice"></span></p>
+                    <label for="paymentMethod" class="text-brown font-weight-bold">Selecciona un método de pago:</label>
+                    <select id="paymentMethod" class="form-control">
+                        <option value="Tarjeta">Tarjeta</option>
+                        <option value="Paypal">Paypal</option>
+                    </select>
+                    <button id="buyButton" class="btn btn-brown btn-block mt-3">Comprar</button>
+                    <div id="messages" class="alert mt-3" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Niveles del curso -->
+        <h4 class="mt-5 font-weight-bold text-brown">Niveles del curso</h4>
+        <div id="courseLevels"></div>
+
+        <!-- Comentarios -->
+        <h4 class="mt-5 font-weight-bold text-brown">Comentarios acerca del curso</h4>
+        <div id="courseComments"></div>
+    </div>
+
+    <!--
+    <!- Main Content ->
+    <div class="container mt-5">
+        <div class="row">
             <div class="col-md-6">
                 <img src="../img/Diseño-Web.jpg" class="img-fluid border rounded" alt="Imagen del curso">
                 <p class="mt-2 text-brown"><strong>Calificación del curso: </strong>(100%)<br><strong>Instructor del curso: </strong>(Brian Barrero)</p>
@@ -54,21 +93,22 @@
             <div class="col-md-6">
                 <h2 class="font-weight-bold text-brown">Curso de Diseño Web</h2>
                 <p class="text-brown">Aprende a crear sitios web atractivos y funcionales con nuestro curso de Diseño Web. Domina el diseño responsive, la experiencia del usuario y las herramientas actuales para transformar tus ideas en interfaces impactantes.</p>
-                <!-- ComboBox and Purchase Button -->
+                <!- ComboBox and Purchase Button ->
                 <div class="mt-4">
-                    <label for="purchaseOption" class="text-brown font-weight-bold">Selecciona una opción de compra:</label>
+                    <!-<label for="purchaseOption" class="text-brown font-weight-bold">Selecciona una opción de compra:</label>
                     <select id="purchaseOption" class="form-control">
                         <option value="complete">Curso completo - $250</option>
                         <option value="level1">Nivel 1 - $85</option>
                         <option value="level2">Nivel 2 - $85</option>
                         <option value="level3">Nivel 3 - Gratis</option>
-                    </select>
+                    </select>->
+                    <p id="purchasePrice" class="text-brown font-weight-bold"></p>
                     <button class="btn btn-brown btn-block mt-3">Comprar</button>
                 </div>
             </div>
         </div>
 
-        <!-- Levels Section -->
+        <!- Levels Section ->
         <h4 class="mt-5 font-weight-bold text-brown">Niveles del curso</h4>
         <div class="level bg-cream p-3 mb-3 rounded border">
             <p class="font-weight-bold text-brown">Nivel 1: Introducción al Diseño Web</p>
@@ -83,7 +123,7 @@
             <p>En el último nivel, aprenderás a agregar interactividad a tus sitios web utilizando JavaScript. También veremos cómo integrar frameworks populares como Bootstrap.</p>
         </div>
 
-        <!-- Comments Section -->
+        <!- Comments Section ->
         <h4 class="mt-5 font-weight-bold text-brown">Comentarios acerca del curso</h4>
         <div class="comment bg-cream p-3 mb-3 rounded border">
             <p class="font-weight-bold text-brown">Ana Nuñez <span class="float-right">7/Sep/2024 9:30 a.m. <span class="text-success">Me gusta</span></span></p>
@@ -99,7 +139,7 @@
             <p>El curso de Diseño Web ofrece una introducción útil a herramientas como Adobe XD y WordPress. Los conceptos básicos están bien cubiertos...</p>
         </div>
         
-    </div>
+    </div>-->
 
     <footer class="text-center mt-5 p-3 bg-brown text-brown">
         <p>© 2024 EduCraft. Todos los derechos reservados.</p>
@@ -112,6 +152,7 @@
 
     <!-- Archivo JS personalizado -->
     <script src="../JS/UsuarioLogueado-1.js"></script>
+    <script src="../JS/ComprarCurso.js"></script>
 
 </body>
 </html>
