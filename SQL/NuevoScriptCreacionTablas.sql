@@ -101,6 +101,7 @@ CREATE TABLE Transaccion (
     FechaUltimoAcceso DATETIME,
     MetodoPago VARCHAR(100),
     MontoPagado FLOAT,
+    EstadoCurso VARCHAR(50),
     ProgresoCurso INT,
     Id_Usuario INT,
     Id_Curso INT,
