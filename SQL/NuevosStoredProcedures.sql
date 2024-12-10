@@ -23,6 +23,19 @@ DROP PROCEDURE IF EXISTS ObtenerNombreCompleto;
 DROP PROCEDURE IF EXISTS ObtenerRolUsuario;
 DROP PROCEDURE IF EXISTS IniciarSesion;
 
+DROP PROCEDURE IF EXISTS CrearCategoria;
+DROP PROCEDURE IF EXISTS BajaCategoria;
+DROP PROCEDURE IF EXISTS InsertarNiveles;
+DROP PROCEDURE IF EXISTS InsertarComentario;
+DROP PROCEDURE IF EXISTS ObtenerInfoUsuarioPorId;
+DROP PROCEDURE IF EXISTS InsertarNiveles;
+
+
+
+
+
+
+
 -- LOGIN
 DELIMITER //
 
@@ -595,6 +608,11 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER $$
+
+-- 
+
 
 
 

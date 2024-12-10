@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-brown" href="../PHP/Busqueda.php">Buscar cursos</a>
+                    <a class="nav-link text-brown" href="../HTML/Busqueda.php">Buscar cursos</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-brown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +33,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../HTML/EditarUsuario.php">Perfil</a>
                         <a class="dropdown-item" href="../HTML/Kardex.php">Kardex</a>
-                        <a class="dropdown-item" href="../HTML/ChatCursoInicio.php">Mensajes</a>
+                        <a class="dropdown-item" href="../HTML/Mensajeria-Estudiante.php">Mensajes</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="../HTML/PaginaPrincipal.php">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
@@ -49,13 +49,26 @@
             <form class="search-form mb-5">
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="tituloCurso">Título del Curso</label>
-                        <input type="text" class="form-control" id="tituloCurso" placeholder="Título del Curso">
+                        <label for="tituloCurso">Curso disponibles:</label>
+                        <select id="cursoSelect" class="form-control">
+                        <option value="">Ninguna</option>
+                    </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="instructor">Instructor</label>
-                        <input type="text" class="form-control" id="instructor" placeholder="Instructor">
+                        <label for="instructor">Instructores:</label>
+                        <select id="instructorSelect" class="form-control">
+                        <option value="">Ninguna</option>
+                    </select>
                     </div>
+
+                    <div class="form-group col-md-4">
+                    <label for="categorySelect">Categoría:</label>
+                    <select id="categorySelect" class="form-control">
+                        <option value="">Ninguna</option>
+                    </select>
+                </div>
+
+
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
@@ -73,42 +86,31 @@
             </form>
 
     <main class="container">
-        <section class="course-categories text-center">
-            <h2>Categorías de cursos</h2>
-            <p>Explore nuestros cursos mejor calificados en varias categorías.</p>
-            <div class="categories-container">
-                <button class="category-item btn">IT & Software<br><span>Explora cursos de programación, ciberseguridad y más.</span></button>
-                <button class="category-item btn">Marketing<br><span>Aprenda marketing digital, redes sociales y más.</span></button>
-                <button class="category-item btn">Negocio<br><span>Mejora tus habilidades empresariales con nuestros cursos.</span></button>
-                <button class="category-item btn">Diseño<br><span>Explore cursos de diseño gráfico, UX/UI y más.</span></button>
-                <button class="category-item btn">Desarrollo personal<br><span>Potencia tu crecimiento personal y profesional.</span></button>
-                <button class="category-item btn">Salud y Fitness<br><span>Mejora tu salud y bienestar con nuestros cursos.</span></button>
+    <section class="course-categories text-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Segundo combo box -->
+            <div class="col-md-6">
+                <div class="category-select mt-4">
+                    <label for="subcategorySelect">Seleccione un filtro:</label>
+                    <select id="subcategorySelect" class="form-control">
+                        <option value="">Todos los cursos</option>
+                        <option value="">Los más vendidos</option>
+                        <option value="">Los más recientes</option>
+                        <option value="">Los mejores calificados</option>
+                    </select>
+                </div>
             </div>
-        </section>
-        <a href="#" class="all-courses-btn">Ver todos los cursos disponibles</a>
+        </div>
+    </div>
 
-        <section class="featured-courses">
-            <div class="course-card">
-                <img src="../img/Diseño-Web.jpg" alt="Curso de Diseño Web">
-                <h3>Curso de Diseño Web</h3>
-                <p>Calificación (100%)</p>
-                <a class="course-btn btn" href="../HTML/ComprarCurso.php">Ver más</a>
 
-            </div>
-            <div class="course-card">
-                <img src="../img/Bootstrap.png" alt="Aprende a usar Bootstrap">
-                <h3>Aprende a usar Bootstrap</h3>
-                <p>Calificación (98%)</p>
-                <a class="course-btn btn" href="#">Ver más</a>
-            </div>
-            <div class="course-card">
-                <img src="../img/Unreal-Engine.png" alt="Aprende a usar Unreal Engine">
-                <h3>Aprende a usar Unreal Engine</h3>
-                <p>Calificación (98%)</p>
-                <a class="course-btn btn" href="#">Ver más</a>
-            </div>
-            
-        </section>
+    </section>
+
+    <section class="featured-courses mt-5">
+
+</section>
+
     </main>
 
     <footer>
@@ -122,5 +124,9 @@
 
     <!-- Archivo JS personalizado -->
     <script src="../JS/UsuarioLogueado-1.js"></script>
+    <script src="../JS/PaginaPrincipal-2.js"></script>
+    <script src="../JS/MostrarCursos.js"></script>
+
+
 </body>
 </html>

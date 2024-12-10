@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para cargar las categorías
     function cargarCategorias() {
-        fetch("http://localhost:3000/PHP/ObtenerCategoriasCursos.php")
+        fetch("../PHP/ObtenerCategoriasCursos.php")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error al obtener las categorías");
