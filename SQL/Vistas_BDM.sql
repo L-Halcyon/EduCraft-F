@@ -2,9 +2,9 @@
 
 USE DB_BDM_CURSOS;
 
-DROP VIEW IF EXISTS VistaCategorias;
+/*DROP VIEW IF EXISTS VistaCategorias;
 DROP VIEW IF EXISTS Top5CursosMejorCalificados;
-DROP VIEW IF EXISTS Top5CursosMasRecientes;
+DROP VIEW IF EXISTS Top5CursosMasRecientes;*/
 
 
 -- Vista: Mostrar categorías 
@@ -93,6 +93,7 @@ JOIN Categoria cat ON c.Id_Categoria = cat.Id_Categoria;
 
 
 -- -------------------------
+DROP VIEW IF EXISTS UsuariosInactivos;
 
 -- Usuarios inactivos
 CREATE VIEW UsuariosInactivos AS
@@ -128,6 +129,7 @@ GROUP BY
 
 -- ------------------------------- Para buscar cursos
 
+DROP VIEW IF EXISTS vw_todos_los_cursos;
 -- Vista para mostrar todos los cursos
 CREATE VIEW vw_todos_los_cursos AS
 SELECT Curso.*, Usuario.NombreCompleto AS NombreInstructor, Categoria.NombreCategoria
@@ -135,12 +137,14 @@ FROM Curso
 INNER JOIN Usuario ON Curso.Id_Usuario = Usuario.Id_Usuario
 INNER JOIN Categoria ON Curso.Id_Categoria = Categoria.Id_Categoria;
 
+DROP VIEW IF EXISTS vw_cursos_mas_vendidos;
 -- Vista para los cursos más vendidos
 CREATE VIEW vw_cursos_mas_vendidos AS
 SELECT * FROM vw_todos_los_cursos
 ORDER BY NumeroVentas DESC
 LIMIT 5;
 
+DROP VIEW IF EXISTS vw_cursos_mas_recientes;
 -- Vista para los cursos más recientes
 CREATE VIEW vw_cursos_mas_recientes AS
 SELECT * FROM vw_todos_los_cursos
@@ -174,7 +178,7 @@ INNER JOIN
 ON 
     T.Id_Curso = C.Id_Curso;
 
-
+DROP VIEW IF EXISTS vw_cursos_mejor_calificados;
 -- Vista para los cursos mejor calificados
 CREATE VIEW vw_cursos_mejor_calificados AS
 SELECT * FROM vw_todos_los_cursos
