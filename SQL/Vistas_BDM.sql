@@ -63,3 +63,14 @@ WHERE
 ORDER BY 
     FechaCreacionCurso DESC
 LIMIT 5;
+
+-- -------------------------
+CREATE VIEW UsuariosInactivos AS
+SELECT 
+    Id_Usuario,
+    NombreCompleto,
+    Rol,
+    EstatusUsuario,
+    NumeroIntentosContraseña
+FROM Usuario
+WHERE NumeroIntentosContraseña >= 3 AND EstatusUsuario = 'Inactivo';
