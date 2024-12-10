@@ -33,7 +33,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../HTML/EditarUsuario-Instructor.php">Perfil</a>
                         <a class="dropdown-item" href="../HTML/MisCursos.php">Mis cursos y Certificados</a>
-                        <a class="dropdown-item" href="../HTML/Mensajeria-Instructor.php">Mensajes</a>
+                        <a class="dropdown-item" href="../HTML/ChatCursoInicio.php">Mensajes</a>
                         <a class="dropdown-item" href="../HTML/Ventas.php">Ventas</a>
 
                         <div class="dropdown-divider"></div>

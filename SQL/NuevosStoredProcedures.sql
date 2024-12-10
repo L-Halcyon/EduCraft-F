@@ -168,6 +168,48 @@ END$$
 DELIMITER ;
 
 
+DELIMITER //
+
+CREATE PROCEDURE ObtenerInfoUsuario ( -- este no se usa
+    IN correo VARCHAR(50)
+)
+BEGIN
+    SELECT 
+        ImagenAvatar,
+        NombreCompleto, 
+        Genero, 
+        FechaNacimiento, 
+        Email, 
+        Contraseña
+    FROM Usuario
+    WHERE Email = correo;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE ObtenerInfoUsuarioPorId (
+    IN usuarioId INT
+)
+BEGIN
+    SELECT 
+        ImagenAvatar,
+        NombreCompleto, 
+        Genero, 
+        FechaNacimiento, 
+        Email, 
+        Contraseña
+    FROM Usuario
+    WHERE Id_Usuario = usuarioId;
+END //
+
+DELIMITER ;
+
+
+
+
+
 
 DELIMITER //
 
@@ -177,7 +219,6 @@ CREATE PROCEDURE ModificarUsuario(
     IN p_NombreCompleto VARCHAR(100),
     IN p_Genero VARCHAR(20), 
     IN p_FechaNacimiento DATE,
-    IN p_Email VARCHAR(50),
     IN p_Contraseña VARCHAR(20)
 )
 BEGIN
@@ -187,13 +228,14 @@ BEGIN
         NombreCompleto = p_NombreCompleto,
         Genero = p_Genero, 
         FechaNacimiento = p_FechaNacimiento,
-        Email = p_Email,
         Contraseña = p_Contraseña,
         FechaRegistroYActualizacionInfo = NOW()
     WHERE Id_Usuario = p_Id_Usuario;
 END //
 
 DELIMITER ;
+
+
 
 
 DELIMITER //

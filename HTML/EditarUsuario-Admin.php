@@ -43,6 +43,7 @@
     </nav>
 
     <!-- Main Content -->
+    <form enctype="multipart/form-data">
     <div class="container mt-5">
         <div class="row">
             <!-- Columna de la Foto del Usuario -->
@@ -52,14 +53,13 @@
                         <img id="userImage" src="../img/perfil.jpg" class="img-fluid rounded mb-3" alt="Imagen del usuario">
                     </div>
                 </div>
-                <input type="file" id="fileInput" accept="image/*" class="d-none">
+                <input type="file" id="fileInput" name="imagenUsuario" accept="image/*" class="d-none">
                 <button id="changeImageBtn" class="btn btn-brown btn-block">Cambiar foto de usuario</button>
             </div>
             
     
             <!-- Columnas de los Campos del Formulario -->
             <div class="col-md-8">
-                <form>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -77,22 +77,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="correoElectronico" class="text-brown">Correo electrónico:</label>
-                                <input type="email" class="form-control border-brown form-background" id="correoElectronico" placeholder="Correo electrónico">
+                                <input type="email" class="form-control border-brown form-background" id="correoElectronico" placeholder="Correo electrónico" readonly>
                             </div>
                         </div>
     
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nombreUsuario" class="text-brown">Nombre de Usuario:</label>
-                                <input type="text" class="form-control border-brown form-background" id="nombreUsuario" placeholder="Nombre de Usuario">
-                            </div>
                             <div class="form-group">
                                 <label for="fechaNacimiento" class="text-brown">Fecha de Nacimiento:</label>
                                 <input type="date" class="form-control border-brown form-background" id="fechaNacimiento" >
                             </div>
                             <div class="form-group">
                                 <label for="contrasena" class="text-brown">Contraseña:</label>
-                                <input type="password" class="form-control border-brown form-background" id="contrasena" placeholder="Contraseña" >
+                                <div class="input-group">
+                                    <input type="password" class="form-control border-brown form-background" id="contrasena" placeholder="Contraseña">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-brown" type="button" id="togglePassword">
+                                            <i class="fas fa-eye" id="toggleIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,6 +120,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/JS/EditarUsuario-Admin.js"></script>
     <!-- Script para cargar el nombre del usuario -->
+    <script src="../JS/EditarUsuario.js"></script>
     <script src="../JS/UsuarioLogueado-1.js"></script>
+<script>
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        const passwordField = document.getElementById("contrasena");
+        const toggleIcon = document.getElementById("toggleIcon");
+        
+        // Cambia el tipo del campo
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        }
+    });
+</script>
+
 </body>
 </html>
