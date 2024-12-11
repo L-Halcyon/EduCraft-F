@@ -31,7 +31,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../HTML/EditarUsuario-Admin.php">Perfil</a>
-                        <a class="dropdown-item" href="../HTML/EliminarComentarios.php">Comentarios</a>
+                       <!-- <a class="dropdown-item" href="../HTML/EliminarComentarios.php">Comentarios</a>-->
                         <a class="dropdown-item" href="../HTML/Categorias-Admin.php">Gestion de categorias</a>
                         <a class="dropdown-item" href="../HTML/Reportes-Admin.php">Reporte de Usuarios</a>
 

@@ -32,7 +32,7 @@ document.querySelector('.search-form').addEventListener('submit', function (e) {
                     <h3>${curso.TituloCurso}</h3>
                     <p>Instructor: ${curso.NombreInstructor}</p>
                     <p>Calificación: ${curso.PromedioCalificacion}%</p>
-                    <a class="course-btn btn" href="#" onclick="verMas(${curso.IdCurso})">Ver más</a>
+                    <a class="course-btn btn" href="#" onclick="verMas(${curso.Id_Curso})">Ver más</a>
                 </div>
             `;
             container.innerHTML += card;
@@ -45,12 +45,13 @@ document.querySelector('.search-form').addEventListener('submit', function (e) {
 function verMas(cursoId) {
     // Verificar si el usuario está logueado (ejemplo con sessionStorage)
     const usuarioLogueado = sessionStorage.getItem('usuarioLogueado');
-
+    window.location.href = `../HTML/ComprarCurso.php?cursoId=${cursoId}`;
+    /*
     if (usuarioLogueado) {
         // Si está logueado, redirigir a la página de detalles del curso
-        window.location.href = `HTML/ComprarCurso.php?cursoId=${cursoId}`;
+        window.location.href = `../HTML/ComprarCurso.php?cursoId=${cursoId}`;
     } else {
         // Si no está logueado, redirigir al registro
-        window.location.href = '../HTML/ComprarCurso.php';
-    }
+        window.location.href = '../HTML/Registro.php';
+    }*/
 }

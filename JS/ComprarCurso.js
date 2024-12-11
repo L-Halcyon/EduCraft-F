@@ -1,9 +1,11 @@
 $(document).ready(function () {
-    const idCurso = 3//sessionStorage.getItem('idCurso'); // Recuperar el ID del curso seleccionado
+    //const idCurso = 3//sessionStorage.getItem('idCurso'); // Recuperar el ID del curso seleccionado
+    const urlParams = new URLSearchParams(window.location.search);
+    const idCurso = urlParams.get('cursoId'); // Obtenemos el Id_Curso desde la URL
 
     if (!idCurso) {
         alert('No se seleccionó ningún curso. Redirigiendo a la página principal.');
-        window.location.href = '../HTML/PaginaPrincipal.php';
+        //window.location.href = '../HTML/PaginaPrincipal.php';
         return;
     }
 

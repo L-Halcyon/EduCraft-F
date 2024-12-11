@@ -68,7 +68,7 @@ $(document).ready(function() {
                     `);
 
                     // Acción cuando se presiona el botón de completar el curso
-                    /*$('#marcar-completado').on('click', function() {
+                    $('#marcar-completado').on('click', function() {
                         $.ajax({
                             url: '../PHP/MarcarCursoCompletado.php',
                             type: 'POST',
@@ -86,10 +86,10 @@ $(document).ready(function() {
                                 alert('Error al hacer la solicitud');
                             }
                         });
-                    });*/
-                    $('#marcar-completado').on('click', function() {
-                        $('#certificado-container').show();
                     });
+                    /*$('#marcar-completado').on('click', function() {
+                        $('#certificado-container').show();
+                    });*/
                 } else {
                     alert('No se pudo cargar el curso');
                 }

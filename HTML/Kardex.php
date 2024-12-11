@@ -147,8 +147,9 @@
 
             </tbody>
         </table>
+        <div id="comment-section"></div>
 
-        <!-- Calificar Curso -->
+        <!-- Calificar Curso ->
         <div class="rate-course mt-4">
             <h4>Califica el Curso</h4>
             <div class="rating-section">
@@ -167,7 +168,7 @@
                 <button class="btn btn-primary mt-2">Enviar Comentario</button>
             </div>
 
-        </div>
+        </div>-->
     </div>
 
     <footer>
